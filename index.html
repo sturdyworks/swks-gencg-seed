@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html ng-app="swks">
+<html ng-app="swksApp">
+
 <head>
-  <title></title>
+  <title>Swks</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta charset="utf-8">
+  <meta charset="utf-8">
   <link href="app.less" type="text/css" rel="stylesheet/less">
 </head>
-<body>
+
+<body ng-controller="swksCtrl">
 
   <!-- Livereload script for development only (stripped during dist build) -->
   <script src="http://localhost:35729/livereload.js" data-concat="false"></script>
@@ -25,18 +27,51 @@
   <script src="bower_components/angular-ui-utils/ui-utils.js"></script>
   <!-- Add New Bower Component JS Above -->
 
-
   <!-- Main App JS -->
   <script src="app.js"></script>
   <!-- Add New Component JS Above -->
 
-  <div>
-    <div id="content" class="container">
-      <div class="row">
-        <div ui-view>
-        </div>
-      </div>
+  <!-- NAVIGATION -->
+
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+
+    <div class="navbar-header">
+      <a class="navbar-brand" ui-sref="home">Swks</a>
+      <button type="button" class="navbar-toggle" ng-click="isCollapsed = !isCollapsed">
+        <span class="sr-only">Toggle Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
     </div>
+
+    <div class="navbar-collapse collapse" collapse="isCollapsed">
+      <ul class="nav navbar-nav">
+        <li class="active"><a ui-sref="home">Home</a></li>
+        <li><a ui-sref="about">About</a></li>
+        <li><a ui-sref="contact">Contact</a></li>
+      </ul>
+      <div class="navbar-header navbar-right">
+  		<p class="navbar-text">
+  		  <a ui-sref="userLogin" class="navbar-link"><i class="glyphicon glyphicon-user"></i>Login</a>
+  		</p>
+        <a ui-sref="settings"><i class="navbar-link glyphicon glyphicon-cog"></i></a>
+  	  </div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+
+  <div id="content" class="container">
+
+  <h2>Multiple colums</h2>
+  <h2>Multiple states</h2>
+
+  <div class="row">
+    <div ui-view="main" class="col-xs-12 col-sm-6 col-lg-8"></div>
+    <div ui-view="aside" class="col-xs-6 col-lg-4"></div>
+  </div>
+
   </div>
 
 </body>
