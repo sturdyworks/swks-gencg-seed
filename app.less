@@ -1,10 +1,16 @@
 @import "bower_components/bootstrap/less/bootstrap.less";
-//@import "bower_components/bootstrap/less/theme.less";
+@import "bower_components/bootstrap/less/theme.less";
 @import "bower_components/font-awesome/less/font-awesome.less";
 @fa-font-path: "bower_components/font-awesome/fonts";
 
 /* Component LESS */
 /* Add Component LESS Above */
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
 
 /* Required for Angular UI Bootstrap */
 .nav, .pagination, .carousel a { cursor: pointer; }
