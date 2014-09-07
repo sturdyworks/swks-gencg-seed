@@ -1,6 +1,6 @@
 dist/
-temp/
 cuts/
+temp/
 node_modules/
 _SpecRunner.html
 .DS_Store
