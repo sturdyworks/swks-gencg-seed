@@ -1,8 +1,18 @@
 
-angular.module('swksApp', ['ui.bootstrap','ui.utils','ui.router','ngAnimate']);
-
-angular.module('swksApp')
+angular
+  .module('swksApp', [
+    'ngAnimate',
+    'ngCookies',
+    'ngResource',
+    'ngSanitize',
+    'ngTouch',
+    'restangular',
+    'ui.bootstrap',
+    'ui.utils',
+    'ui.router'
+  ])
   .config(function($stateProvider, $urlRouterProvider) {
+    'use strict';
     $stateProvider
       .state('home', {
         url: "/",
@@ -61,38 +71,20 @@ angular.module('swksApp')
       });
 
     /* Add New States Above */
-
     $urlRouterProvider.when('', '/');
     $urlRouterProvider.otherwise("/error?code=404");
-
-
-    //$urlRouterProvider.otherwise(
-    //  function($injector, $location) {
-    //    $location.path('/');
-    //});
-
-    //$urlRouterProvider.otherwise('/');
-
-  });
-
-angular.module('swksApp')
+  })
   .controller('swksCtrl', function ($scope, $stateParams) {
+    'use strict';
     $scope.errorCode = $stateParams.code;
     $scope.data = [
       {name: "Chrome", percent:20},
       {name: "Firefox", percent:30},
       {name: "Safari", percent:60}
     ];
-  });
-
-//angular.module('swksApp.controllers', [])
-//  .controller('swksCtrl', ['$scope', '$state', function($scope, $state) {
-//    $scope.user = {};
-//    $scope.login = function() {};
-//  }]);
-
-angular.module('swksApp')
+  })
   .run(function($rootScope) {
+    'use strict';
     $rootScope.safeApply = function(fn) {
       var phase = $rootScope.$$phase;
       if (phase === '$apply' || phase === '$digest') {
