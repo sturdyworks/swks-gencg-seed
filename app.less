@@ -19,11 +19,12 @@
 /* Required for Angular UI Bootstrap */
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
-/* Move down content to allow for fixed navbar which is 50px tall */
+/* Move down content to allow for fixed navbar which is 50px tall
 body {
   padding-top: 50px;
   padding-bottom: 20px;
 }
+*/
 
 .browsehappy {
   margin: 0.2em 0;
@@ -52,5 +53,10 @@ body {
   }
 }
 
+@import "pesticide";
+
+
+@import "home/home.less";
+@import "settings/settings.less";
 /* Add Component LESS Above */
 
