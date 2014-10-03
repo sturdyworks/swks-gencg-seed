@@ -1,6 +1,6 @@
 
 angular
-  .module('swksApp', [
+  .module('MainApp', [
     'ngAnimate',
     'ngCookies',
     'ngResource',
@@ -11,6 +11,7 @@ angular
     'ui.utils',
     'ui.router'
   ])
+  .value('displayDensity', 'cozy')
   .config(function($stateProvider, $urlRouterProvider) {
     'use strict';
     $stateProvider
@@ -21,7 +22,7 @@ angular
             template: '<h3>Home Aside</h3>'
           },
           'main': {
-            template: '<h3>Home Main</h3>'
+            templateUrl: 'home/home.html'
           }
         }
       })
@@ -73,26 +74,4 @@ angular
     /* Add New States Above */
     $urlRouterProvider.when('', '/');
     $urlRouterProvider.otherwise("/error?code=404");
-  })
-  .controller('swksCtrl', function ($scope, $stateParams) {
-    'use strict';
-    $scope.errorCode = $stateParams.code;
-    $scope.data = [
-      {name: "Chrome", percent:20},
-      {name: "Firefox", percent:30},
-      {name: "Safari", percent:60}
-    ];
-  })
-  .run(function($rootScope) {
-    'use strict';
-    $rootScope.safeApply = function(fn) {
-      var phase = $rootScope.$$phase;
-      if (phase === '$apply' || phase === '$digest') {
-        if (fn && (typeof(fn) === 'function')) {
-          fn();
-        }
-      } else {
-        this.$apply(fn);
-      }
-    };
   });
