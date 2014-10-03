@@ -1,4 +1,25 @@
 
+    /* generated via: yo cg-angular:partial settings */
+    $stateProvider.state('settings', {
+        url: '/settings',
+        templateUrl: 'settings/settings.html'
+    });
+
+    /* Eliminated since setting menu has no view */
+      .state('settings', {
+        url: "/settings",
+        views: {
+          'aside': {
+            template: 'settings.aside'
+          },
+          'main': {
+            template: 'settings.main'
+          }
+        }
+      });
+
+
+  /* Example from: 
   .config(function($stateProvider, $urlRouterProvider) {
     'use strict';
     $stateProvider
