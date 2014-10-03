@@ -20,7 +20,7 @@
     "bootstrap": "~3.1.1",
     "es5-shim": "~4.0.x",
     "font-awesome": "~4.2.x",
-    "jquery": "~2.1",
+    "jquery": "~2.1.x",
     "json3": "~3.3.1",
     "less.js": "~1.7",
     "lodash": "~2.4.x",
