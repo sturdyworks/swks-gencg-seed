@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="MainApp">
+<html ng-app="MainApp" class="no-js">
 <head>
   <title>Swks</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -76,8 +76,16 @@
       and (-webkit-device-pixel-ratio: 1)"
     rel="apple-touch-startup-image">
 
+  <!-- CSS style sheets for app -->
   <link href="app.less" type="text/css" rel="stylesheet/less">
+
+  <!-- Support oldie IE8 on XP -->
+  <!-- Modernizr will include HTML5shiv as necessary -->
   <script src="bower_components/modernizr/modernizr.js"></script>
+  <!--[if lt IE 9]>
+  <script src="bower_components/es5-shim/es5-shim.js"></script>
+  <script src="bower_components/json3/lib/json3.js"></script>
+  <![endif]-->
 </head>
 
 <body ng-controller="MainController">
@@ -85,33 +93,6 @@
   <!-- Livereload script for development only (stripped during dist build) -->
   <script src="http://localhost:35729/livereload.js" data-concat="false"></script>
   <script src="bower_components/less.js/dist/less-1.7.5.js" data-concat="false"></script>
-
-  <!--[if lt IE 10]>
-  <p class="browsehappy">You are using an <strong>outdated</strong> browser.</p>
-  <p> Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-  <![endif]-->
-
-  <!--[if lt IE 9]>
-  <script src="bower_components/es5-shim/es5-shim.js"></script>
-  <script src="bower_components/json3/lib/json3.js"></script>
-  <![endif]-->
-
-  <!--[if lte IE 8]>
-  <script>
-  window.myCustomTags = [ 'yourCustomDirective', 'somebodyElsesDirective' ];
-  </script>
-  <script src="build/angular-ui-ieshiv.js"></script>
-  <![endif]-->
-
-  <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-  <script>
-    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-    e.src='//www.google-analytics.com/analytics.js';
-    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-    ga('create','UA-XXXXX-X');ga('send','pageview');
-  </script>
 
   <!-- JS from Bower Components -->
   <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -130,12 +111,6 @@
   <script src="bower_components/restangular/dist/restangular.js"></script>
   <!-- Add New Bower Component JS Above -->
 
-  <!-- Main App JS -->
-  <script src="app.js"></script>
-  <script src="home/main.js"></script>
-  <script src="settings/settings.js"></script>
-  <!-- Add New Component JS Above -->
-
   <div class="masthead">
   <nav class="navbar navbar-inverse" role="navigation">
   <div class="container-fluid">
@@ -151,22 +126,22 @@
     <div class="navbar-collapse collapse" collapse="isCollapsed">
       <ul class="nav navbar-nav" role="menu">
         <li><a ui-sref="home" role="menuitem">
-          <span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Home</a></li>
+          <span class="fa fa-home"></span>&nbsp;&nbsp;Home</a></li>
         <li><a ui-sref="about" role="menuitem">
-          <span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;About</a></li>
+          <span class="fa fa-comment"></span>&nbsp;&nbsp;About</a></li>
         <li ng-click="setMaster(section, $event)" role="presentation">
           <a ui-sref="contact" role="menuitem">
-          <span class="glyphicon glyphicon-hand-right"></span>&nbsp;&nbsp;Contact</a></li>
+          <span class="fa fa-paper-plane-o"></span>&nbsp;&nbsp;Contact</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
 
         <li><a ui-sref="userLogin" role="menuitem">
-          <span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Login</a>
+          <span class="fa fa-user"></span>&nbsp;&nbsp;Login</a>
         </li>
 
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="menu">
-            <span class="glyphicon glyphicon-cog"></span>
+            <span class="fa fa-cog"></span>
             <span class="sr-only">&nbsp;&nbsp;Settings</span>
             <span class="caret"></span>
           </a>
@@ -175,15 +150,15 @@
 
             <li ng-click="displayDensity='comfortable'" role="presentation">
               <a ui-sref="settings" ng-model="displayDensity" tabindex="-1" role="menuitem">
-              <span class="glyphicon glyphicon-ok" ng-show="displayDensity == 'comfortable'"></span>&nbsp;&nbsp;Comfortable</a></li>
+              <span class="fa fa-check" ng-show="displayDensity == 'comfortable'"></span>&nbsp;&nbsp;Comfortable</a></li>
 
             <li ng-click="displayDensity='cozy'" role="presentation">
               <a ui-sref="settings" ng-model="displayDensity" tabindex="-1" role="menuitem">
-              <span class="glyphicon glyphicon-ok" ng-show="displayDensity == 'cozy'"></span>&nbsp;&nbsp;Cozy</a></li>
+              <span class="fa fa-check" ng-show="displayDensity == 'cozy'"></span>&nbsp;&nbsp;Cozy</a></li>
 
             <li ng-click="displayDensity='compact'" role="presentation">
               <a ui-sref="settings" ng-model="displayDensity" tabindex="-1" role="menuitem">
-              <span class="glyphicon glyphicon-ok" ng-show="displayDensity == 'compact'"></span>&nbsp;&nbsp;Compact</a></li>
+              <span class="fa fa-check" ng-show="displayDensity == 'compact'"></span>&nbsp;&nbsp;Compact</a></li>
 
             <li role="presentation" class="divider"></li>
 
@@ -210,6 +185,22 @@
   <div class="footer">
     <p>Application built by <a href="https://twitter.com/bradsturtevant">@bradsturtevant</a> using AngularJS.</p>
   </div>
+
+  <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+  <script>
+    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+    e.src='//www.google-analytics.com/analytics.js';
+    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+    ga('create','UA-XXXXX-X');ga('send','pageview');
+  </script>
+
+  <!-- Main App JS -->
+  <script src="app.js"></script>
+  <script src="home/main.js"></script>
+  <script src="settings/settings.js"></script>
+  <!-- Add New Component JS Above -->
 
 </body>
 </html>
