@@ -1,3 +1,80 @@
+          <a class="dropdown-toggle" data-toggle="dropdown" role="menu">
+            <span class="fa fa-cog fa-fw"></span>
+            <span class="sr-only">&nbsp;&nbsp;Settings</span>
+            <span class="fa fa-caret-down fa-fw"></span>
+          </a>
+
+            <li class="dropdown-header" ng-init="settings.displayDensity='cozy'" role="presentation">Display Density</li>
+
+
+          <ul class="dropdown-menu" data-ng-controller="SettingsController">
+  <script src="settings/settings.js"></script>
+
+
+      <ul class="nav navbar-nav compact" role="menu">
+      <ul class="nav navbar-nav navbar-right compact" role="menu">
+
+      <ul class="nav navbar-nav" ng-class="settings.displayDensity" role="menu">
+      <ul class="nav navbar-nav navbar-right" ng-class="settings.displayDensity" role="menu">
+
+
+  <!--[if lt IE 9]>
+  <script src="bower_components/es5-shim/es5-shim.js"></script>
+  <script src="bower_components/json3/lib/json3.js"></script>
+  <script src="bower_components/css3-mediaqueries-js/css3-mediaqueries.js"></script>
+  <![endif]-->
+
+
+  <!--[if lt IE 9]>
+  <script src="bower_components/es5-shim/es5-shim.js"></script>
+  <script src="bower_components/json3/lib/json3.js"></script>
+  <script src="bower_components/css3-mediaqueries-js/css3-mediaqueries.js"></script>
+  <script src="bower_components/html5shiv/dist/html5shiv.js"></script>
+  <script src="bower_components/respond/src/respond.js"></script>
+  <script src="bower_components/console-polyfill/index.js"></script>
+  <![endif]-->
+
+
+  <script src="bower_components/css3-mediaqueries-js/css3-mediaqueries.js"></script>
+
+  <script src="bower_components\html5shiv\dist\html5shiv.js"></script>
+
+  <script src="bower_components/webshim/js-webshim/dev/polyfiller.js"></script>
+  <!-- Support older browsers -->
+  <script>
+    webshim.setOptions('basePath', '/bower_components/webshim/js-webshim/dev/shims/');
+    webshims.polyfill();
+  </script>
+
+
+
+  <!--[if lt IE 9]>
+  <script src="bower_components/console-polyfill/index.js"></script>
+  <script src="scripts/eventShim.js"></script>
+  <![endif]-->
+
+
+
+  <script src="bower_components/moment/moment.js"></script>
+
+
+
+  <!-- CSS style sheets for app -->
+  <link href="app.less" type="text/css" rel="stylesheet/less">
+
+  <!-- Modernizr will include HTML5shiv as necessary -->
+  <script src="bower_components/modernizr/modernizr.js"></script>
+  <!-- Support oldie IE8 on XP -->
+  <!--[if lt IE 9]>
+  <script src="bower_components/es5-shim/es5-shim.js"></script>
+  <script src="bower_components/json3/lib/json3.js"></script>
+  <script src="bower_components/console-polyfill/index.js"></script>
+  <script src="scripts/eventShim.js"></script>
+  <![endif]-->
+</head>
+
+
+
   <!--[if lt IE 10]>
   <p class="browsehappy">You are using an <strong>outdated</strong> browser.</p>
   <p> Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>

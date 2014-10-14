@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org" class="no-js">
+<head>
+  <title>Swks</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+
+  <!-- Meta and link tags below for mobile from Google's Web Fundamentals articles -->
+  <!-- https://developers.google.com/web/fundamentals/device-access/stickyness/ -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="Swks Mobile App">
+  <meta name="apple-mobile-web-app-title" content="Swks Mobile App">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <!-- Provide full size icons, so the favicon and screenshots not used -->
+  <!-- icon in the highest resolution we will need -->
+  <link rel="icon" sizes="228x228" href="img/Swks-Icon-1DS-228.png">
+  <!-- reuse same icon for Safari -->
+  <link rel="apple-touch-icon" href="img/Swks-Icon-1DS-228.png">
+  <!-- multiple icons for IE -->
+  <meta name="msapplication-square70x70logo" content="img/Swks-Icon-1DS-70.png">
+  <meta name="msapplication-square150x150logo" content="img/Swks-Icon-1DS-150.png">
+  <meta name="msapplication-square310x310logo" content="img/Swks-Icon-1DS-310.png">
+  <!-- Tile type icon for IE10 on Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="img/Swks-Icon-1DS-144.png">
+  <meta name="msapplication-TileColor" content="#E1B674">
+
+  <!-- MS specific -->
+  <!-- Tooltip (Desktop) -->
+  <meta name="msapplication-tooltip" content="Start the Swks app">
+  <!-- Start url when pinned (Desktop) -->
+  <meta name="msapplication-starturl" content="./">
+  <!-- Color of navigation buttons (back/forward) (Desktop) -->
+  <meta name="msapplication-navbutton-color" content="#FF3300" />
+
+  <!-- Safari specific -->
+  <!-- Specify startup image via apple-touch-startup-image tag -->
+  <!-- Images have to be specific size of device screen or won’t be used. -->
+  <!-- iOS 6 & 7 iPad (retina, portrait) -->
+  <link href="img/Swks-TextIcon-1DS-2008.png"
+    media="(device-width: 768px) and (device-height: 1024px)
+      and (orientation: portrait)
+      and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image">
+  <!-- iOS 6 & 7 iPad (retina, landscape) -->
+  <link href="img/Swks-TextIcon-1DS-2048.png"
+    media="(device-width: 768px) and (device-height: 1024px)
+      and (orientation: landscape)
+      and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image">
+  <!-- iOS 6 iPad (portrait) -->
+  <link href="img/Swks-TextIcon-1DS-1004.png"
+    media="(device-width: 768px) and (device-height: 1024px)
+      and (orientation: portrait)
+      and (-webkit-device-pixel-ratio: 1)"
+    rel="apple-touch-startup-image">
+  <!-- iOS 6 iPad (landscape) -->
+  <link href="img/Swks-TextIcon-1DS-1024.png"
+    media="(device-width: 768px) and (device-height: 1024px)
+      and (orientation: landscape)
+      and (-webkit-device-pixel-ratio: 1)"
+    rel="apple-touch-startup-image">
+  <!-- iOS 6 & 7 iPhone 5 -->
+  <link href="img/Swks-TextIcon-1DS-1096.png"
+    media="(device-width: 320px) and (device-height: 568px)
+      and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image">
+  <!-- iOS 6 & 7 iPhone (retina) -->
+  <link href="img/Swks-TextIcon-1DS-920.png"
+    media="(device-width: 320px) and (device-height: 480px)
+      and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image">
+  <!-- iOS 6 iPhone -->
+  <link href="img/Swks-TextIcon-1DS-460.png"
+    media="(device-width: 320px) and (device-height: 480px)
+      and (-webkit-device-pixel-ratio: 1)"
+    rel="apple-touch-startup-image">
+
+  <!-- CSS style sheets for app -->
+  <link href="app.less" type="text/css" rel="stylesheet/less">
+
+  <!-- Modernizr used by Webshim polyfill library -->
+  <script src="bower_components/modernizr/modernizr.js"></script>
+  <!--[if lte IE 8]
+  <script>
+    // Define custom directives in myCustomTags for ui-utils-ieshiv
+    window.myCustomTags = ['formAutofillFix'];
+  </script>
+  <script src="bower_components/angular-ui-utils/ui-utils-ieshiv.js"></script>
+  <![endif]-->
+</head>
+
+<body id="data-ng-app" data-ng-app="MainApp" data-ng-controller="MainController">
+
+  <!-- JS from Bower Components -->
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/webshim/js-webshim/dev/polyfiller.js"></script>
+  <!-- Support older browsers -->
+  <script>
+    webshim.setOptions('basePath', '/bower_components/webshim/js-webshim/dev/shims/');
+    webshims.polyfill();
+  </script>
+  <script src="bower_components/bootstrap/js/collapse.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <script src="bower_components/angular-touch/angular-touch.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="bower_components/angular-ui-utils/ui-utils.js"></script>
+  <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+  <script src="bower_components/restangular/dist/restangular.js"></script>
+  <!-- Add New Bower Component JS Above -->
+
+  <section class="container-fluid navbar navbar-inverse" data-ng-class="settings.navbarDensity" role="navigation">
+
+    <header class="navbar-header">
+      <button type="button" class="navbar-toggle" data-ng-class="settings.navbarToggleDensity" data-toggle="collapse" data-ng-click="isCollapsed = !isCollapsed">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="fa fa-bars fa-fw" data-ng-class="settings.faIconDensity"></span>
+      </button>
+
+      <a class="navbar-brand" data-ng-click="showHome()" data-ng-class="settings.navbarBrandDensity" ui-sref="home">Density</a>
+    </header>
+
+    <nav class="navbar-collapse collapse" collapse="isCollapsed">
+
+      <ul class="nav navbar-nav" data-ng-class="settings.navbarNavDensity" role="menu">
+
+        <li data-ng-click="showHome()" role="presentation">
+          <a ui-sref="home" role="menuitem">
+          <span class="fa fa-home fa-fw"></span>&nbsp;&nbsp;Home</a>
+        </li>
+
+        <li data-ng-click="showAbout()" role="presentation">
+          <a ui-sref="about" role="menuitem">
+          <span class="fa fa-comment fa-fw"></span>&nbsp;&nbsp;About</a>
+        </li>
+
+        <li data-ng-click="showContact()" role="presentation">
+          <a ui-sref="contact" role="menuitem">
+          <span class="fa fa-paper-plane-o fa-fw"></span>&nbsp;&nbsp;Contact</a>
+        </li>
+
+      </ul>
+      <ul class="nav navbar-nav navbar-right" data-ng-class="settings.navbarNavDensity" role="menu">
+
+        <li data-ng-click="showUserLogin()">
+          <a ui-sref="userLogin" role="menuitem">
+          <span class="fa fa-user fa-fw"></span>&nbsp;&nbsp;Login</a>
+        </li>
+
+        <li class="dropdown">
+          <button type="button" class="btn navbar-btn navbar-inverse dropdown-toggle" data-toggle="dropdown" role="menu">
+            <span class="fa fa-cog navbar-inverse"></span>
+            <span class="sr-only">&nbsp;&nbsp;Settings</span>
+            <span class="fa fa-caret-down navbar-inverse"></span>
+          </button>
+
+          <ul class="dropdown-menu" data-ng-class="settings.dropdownMenuDensity">
+
+            <li class="dropdown-header" data-ng-class="settings.dropdownHeaderDensity" role="presentation">Display Density</li>
+
+            <li data-ng-click="settings.displayDensity='comfortable'" role="presentation">
+              <a data-ng-model="settings.displayDensity" tabindex="-1" role="menuitem">
+              <span class="fa fa-check fa-fw" data-ng-class="{invisible: settings.displayDensity != 'comfortable'}"></span>&nbsp;&nbsp;Comfortable</a>
+            </li>
+
+            <li data-ng-click="settings.displayDensity='cozy'" role="presentation">
+              <a data-ng-model="settings.displayDensity" tabindex="-1" role="menuitem">
+              <span class="fa fa-check fa-fw" data-ng-class="{invisible: settings.displayDensity != 'cozy'}"></span>&nbsp;&nbsp;Cozy</a>
+            </li>
+
+            <li data-ng-click="settings.displayDensity='compact'" role="presentation">
+              <a data-ng-model="settings.displayDensity" tabindex="-1" role="menuitem">
+              <span class="fa fa-check fa-fw" data-ng-class="{invisible: settings.displayDensity != 'compact'}"></span>&nbsp;&nbsp;Compact</a>
+            </li>
+
+            <li role="presentation" class="divider"></li>
+
+            <li data-ng-click="showSettings()" role="presentation">
+              <a ui-sref="settings" tabindex="-1" role="menuitem">&nbsp;&nbsp;Settings</a>
+            </li>
+
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <section id="content" class="container-fluid">
+    <header class="row">
+      <!-- CONTENT INJECTED INTO VIEWS -->
+      <nav ui-view="main" class="col-xs-12 col-sm-6 col-lg-8"></nav>
+      <aside ui-view="aside" class="col-xs-6 col-lg-4"></aside>
+    </header>
+  </section>
+
+  <!-- FOOTER -->
+  <section class="footer">
+    <p>Application built by <a href="https://twitter.com/bradsturtevant">@bradsturtevant</a> using AngularJS.</p>
+  </section>
+
+  <!-- Livereload script for development only (stripped during dist build) -->
+  <script src="http://localhost:35729/livereload.js" data-concat="false"></script>
+  <script src="bower_components/less.js/dist/less-1.7.5.js" data-concat="false"></script>
+
+  <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+  <script>
+    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+    e.src='//www.google-analytics.com/analytics.js';
+    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+    ga('create','UA-XXXXX-X');ga('send','pageview');
+  </script>
+
+  <!-- Main App JS -->
+  <script src="app.js"></script>
+  <script src="home/main.js"></script>
+  <script src="settings/settings.js"></script>
+  <!-- Add New Component JS Above -->
+
+</body>
+</html>
