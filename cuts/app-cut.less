@@ -1,59 +1,49 @@
 
 
-.navbar-default .navbar-btn {
-  border-color: #ddd;
-}
+/* Bootstrap less variables */
+
+@font-size-base:          14px;
+@font-size-large:         ceil((@font-size-base * 1.25)); // ~18px
+@font-size-small:         ceil((@font-size-base * 0.85)); // ~12px
+
+//** Load fonts from this directory.
+@icon-font-path:          "../fonts/";
+//** File name for all font files.
+@icon-font-name:          "glyphicons-halflings-regular";
+//** Element ID within SVG icon file.
+@icon-font-svg-id:        "glyphicons_halflingsregular";
+
+/* Font Awesome needs color correction to match Bootstrap navbar-default */
+
+@fa-border-color:     #eee;
+@fa-inverse:          #fff;
+@fa-li-width:         (30em / 14);
 
 
 
-.navbar-default .navbar-brand {
+
+/* Rule for case when navbar-toggle used without navbar-btn */
+.navbar-default .navbar-toggle {
   color: #777;
-}
-
-.navbar-default .navbar-brand:hover,
-.navbar-default .navbar-brand:focus {
-  color: #5e5e5e;
   background-color: transparent;
+  border: 1px solid #777;
+  border-radius: 4px;
+}
+/* Rules for case when navbar-inverse used without navbar-default */
+.navbar-inverse .navbar-btn {
+  color: #777;
+  background-color: transparent;
+  border: 1px solid #777;
+  border-radius: 4px;
+}
+.navbar-inverse .navbar-toggle {
+  color: #777;
+  background-color: transparent;
+  border: 1px solid #777;
+  border-radius: 4px;
 }
 
 
-
-
-.nav-comfortable > li > a {
-  position: relative;
-  display: block;
-  padding: 20px 30px;
-}
-
-.navbar-nav-comfortable > li > a {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  line-height: 40px;
-}
-
-.nav-cozy > li > a {
-  position: relative;
-  display: block;
-  padding: 10px 15px;
-}
-
-.navbar-nav-cozy > li > a {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  line-height: 20px;
-}
-
-.nav-compact > li > a {
-  position: relative;
-  display: block;
-  padding: 5px 7px;
-}
-
-.navbar-nav-compact > li > a {
-  padding-top: 5px;
-  padding-bottom: 5px;
-  line-height: 10px;
-}
 
 /* Fixed navbar requires us to push down content 50px
 body {
@@ -61,6 +51,8 @@ body {
   padding-bottom: 20px;
 }
 */
+
+
 
 .browsehappy {
   margin: 0.2em 0;
@@ -76,6 +68,8 @@ body {
     width: 50px;
   }
 }
+
+
 
 /* The LESS below makes the backdrop white and 
    causes the modal to fade in rather than slide in. */
@@ -95,8 +89,6 @@ body {
 @import "bower_components/bootstrap/less/theme.less";
 @import "bower_components/font-awesome/less/font-awesome.less";
 
-
-
 @font-face {
   font-family: 'Glyphicons Halflings';
   src: url('/bower_components/bootstrap/fonts/glyphicons-halflings-regular.eot');
@@ -111,10 +103,6 @@ body {
 .nav-pills > li > glyphicon {
   height: 46px;
 }
-
-
 .nav-pills > li > a {padding-top:5px !important; padding-bottom:5px !important;}
-
-
 .navbar-nav > li > a {padding-top:5px !important; padding-bottom:5px !important;}
 .navbar {min-height:32px !important}
