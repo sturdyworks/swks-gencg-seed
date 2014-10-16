@@ -37,6 +37,18 @@ angular.module('MainApp')
       }
     };
 
+    $rootScope.showHome = function() {
+      $log.log('show home');
+    };
+    $rootScope.showAbout = function() {
+      $log.log('show about');
+    };
+    $rootScope.showContact = function() {
+      $log.log('show contact');
+    };
+    $rootScope.showUserLogin = function() {
+      $log.log('show userLogin');
+    };
     $rootScope.showSettings = function() {
       $log.log('show settings');
     };
