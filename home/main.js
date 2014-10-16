@@ -6,43 +6,26 @@
  * Controller of the MainApp
  */
 angular.module('MainApp')
-  .controller('MainController', function ($scope, $stateParams) {
+  .controller('MainController', function ($scope, $stateParams, $log) {
     'use strict';
-    $scope.errorCode = $stateParams.code;
-    $scope.displayDensity = $stateParams.displayDensity;
 
-    $scope.setMaster = function(obj, $event){
-      console.log($event.target);
-    };
-
-    $scope.makeDisplayComfortable = function() {
-      $scope.displayDensity = 'comfortable';
-    };
-    $scope.makeDisplayCozy = function() {
-      $scope.displayDensity = 'cozy';
-    };
-    $scope.makeDisplayCompact = function() {
-      $scope.displayDensity = 'compact';
-    };
-
-    $scope.changeDisplayDensity = function(displayDensity) {
-      if (displayDensity === 'comfortable') {
-        return;
-      } else if (displayDensity === 'cozy') {
-        return;
-      } else if (displayDensity === 'compact') {
-        return;
-      }
-    };
-
-    $scope.$watch('displayDensity', function(newVal, oldVal) {
-      if (newVal === oldVal) {
-      }
-      $scope.displayDensity = newVal;
-    });
+    $log.log($scope);
+    $log.log($stateParams);
   })
-  .run(function($rootScope) {
+  .run(function($rootScope, $state, $stateParams, $log) {
     'use strict';
+
+    $rootScope.$state = $state;
+    $rootScope.$stateParams = $stateParams;
+
+    $rootScope.$on('$stateNotFound', 
+      function(event, unfoundState, fromState, fromParams) {
+        $log.log(unfoundState.to); // "unknown.state"
+        $log.log(unfoundState.toParams); // {a:1, b:2}
+        $log.log(unfoundState.options); // {inherit:false} + default options
+        $state.go("error?code=404");
+      });
+
     $rootScope.safeApply = function(fn) {
       var phase = $rootScope.$$phase;
       if (phase === '$apply' || phase === '$digest') {
@@ -53,4 +36,24 @@ angular.module('MainApp')
         this.$apply(fn);
       }
     };
+
+    $rootScope.showHome = function() {
+      $log.log('show home');
+    };
+    $rootScope.showAbout = function() {
+      $log.log('show about');
+    };
+    $rootScope.showContact = function() {
+      $log.log('show contact');
+    };
+    $rootScope.showUserLogin = function() {
+      $log.log('show userLogin');
+    };
+    $rootScope.showSettings = function() {
+      $log.log('show settings');
+    };
+
+    $log.log($rootScope);
+    $log.log($state);
+    $log.log($stateParams);
   });

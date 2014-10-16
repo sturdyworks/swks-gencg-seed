@@ -142,10 +142,20 @@ module.exports = function (grunt) {
       }
     },
     uglify: {
+      options: {
+        preserveComments: false,
+        compress        : false,
+        mangle          : false,
+        beautify        : {
+          beautify: false,
+          quote_keys: true,
+          ascii_only: true
+        }
+      },
       main: {
         src: 'temp/app.full.js',
         dest:'dist/app.full.min.js'
-      }
+      },
     },
     htmlmin: {
       main: {
