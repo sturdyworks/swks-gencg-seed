@@ -114,24 +114,21 @@
   <script src="bower_components/restangular/dist/restangular.js"></script>
   <!-- Add New Bower Component JS Above -->
 
-  <section class="container-fluid navbar navbar-default navbar-inverse" 
-           data-ng-class="settings.navbarDensity" role="navigation">
+  <section class="container-fluid navbar navbar-default navbar-inverse" role="navigation">
 
     <header class="navbar-header">
-      <a ui-sref="home" class="navbar-brand" data-ng-click="showHome()" 
-         data-ng-class="settings.navbarBrandDensity">Density</a>
+      <a ui-sref="home" class="navbar-brand" data-ng-click="showHome()">Density</a>
 
       <button type="button" class="btn navbar-btn navbar-toggle" 
-              data-ng-class="[settings.btnDensity, settings.navbarBtnDensity, settings.navbarToggleDensity]" 
               data-toggle="collapse" data-ng-click="isCollapsed = !isCollapsed">
         <span class="sr-only">Toggle navigation</span>
-        <span class="fa fa-bars fa-fw" data-ng-class="settings.faIconDensity"></span>
+        <span class="fa fa-bars fa-fw"></span>
       </button>
     </header>
 
     <nav class="navbar-collapse collapse" collapse="isCollapsed">
 
-      <ul class="nav navbar-nav" data-ng-class="settings.navbarNavDensity" role="menu">
+      <ul class="nav navbar-nav" role="menu">
 
         <li data-ng-click="showHome()" role="presentation">
           <a ui-sref="home" role="menuitem">
@@ -149,8 +146,7 @@
         </li>
 
       </ul>
-      <ul class="nav navbar-nav navbar-right" 
-          data-ng-class="settings.navbarNavDensity" role="menu">
+      <ul class="nav navbar-nav navbar-right" role="menu">
 
         <li data-ng-click="showUserLogin()">
           <a ui-sref="userLogin" role="menuitem">
@@ -159,37 +155,29 @@
 
         <li class="dropdown">
           <button type="button" class="btn navbar-btn dropdown-toggle" 
-                  data-ng-class="[settings.btnDensity, settings.navbarBtnDensity, settings.marginFixDensity]" 
                   data-toggle="dropdown" role="menu">
             <span class="fa fa-cog"></span>
             <span class="sr-only">&nbsp;&nbsp;Settings</span>
             <span class="fa fa-caret-down"></span>
           </button>
 
-          <ul class="dropdown-menu" data-ng-class="settings.dropdownMenuDensity">
+          <ul class="dropdown-menu">
 
-            <li class="dropdown-header" data-ng-class="settings.dropdownHeaderDensity" 
-                role="presentation">Display Density</li>
+            <li class="dropdown-header" role="presentation">Display Density</li>
 
             <li data-ng-click="settings.displayDensity='comfortable'" role="presentation">
               <a data-ng-model="settings.displayDensity" tabindex="-1" role="menuitem">
-              <span class="fa fa-check fa-fw" 
-                    data-ng-class="{invisible: settings.displayDensity != 'comfortable'}">
-              </span>&nbsp;&nbsp;Comfortable</a>
+              <span class="fa fa-check fa-fw"></span>&nbsp;&nbsp;Comfortable</a>
             </li>
 
             <li data-ng-click="settings.displayDensity='cozy'" role="presentation">
               <a data-ng-model="settings.displayDensity" tabindex="-1" role="menuitem">
-              <span class="fa fa-check fa-fw" 
-                    data-ng-class="{invisible: settings.displayDensity != 'cozy'}">
-              </span>&nbsp;&nbsp;Cozy</a>
+              <span class="fa fa-check fa-fw"></span>&nbsp;&nbsp;Cozy</a>
             </li>
 
             <li data-ng-click="settings.displayDensity='compact'" role="presentation">
               <a data-ng-model="settings.displayDensity" tabindex="-1" role="menuitem">
-              <span class="fa fa-check fa-fw" 
-                    data-ng-class="{invisible: settings.displayDensity != 'compact'}">
-              </span>&nbsp;&nbsp;Compact</a>
+              <span class="fa fa-check fa-fw"></span>&nbsp;&nbsp;Compact</a>
             </li>
 
             <li role="presentation" class="divider"></li>

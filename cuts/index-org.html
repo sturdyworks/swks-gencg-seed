@@ -118,15 +118,15 @@
            data-ng-class="settings.navbarDensity" role="navigation">
 
     <header class="navbar-header">
-      <a ui-sref="home" class="navbar-brand" data-ng-click="showHome()" 
-         data-ng-class="settings.navbarBrandDensity">Density</a>
-
       <button type="button" class="btn navbar-btn navbar-toggle" 
               data-ng-class="[settings.btnDensity, settings.navbarBtnDensity, settings.navbarToggleDensity]" 
               data-toggle="collapse" data-ng-click="isCollapsed = !isCollapsed">
         <span class="sr-only">Toggle navigation</span>
         <span class="fa fa-bars fa-fw" data-ng-class="settings.faIconDensity"></span>
       </button>
+
+      <a ui-sref="home" class="navbar-brand" data-ng-click="showHome()" 
+         data-ng-class="settings.navbarBrandDensity">Density</a>
     </header>
 
     <nav class="navbar-collapse collapse" collapse="isCollapsed">

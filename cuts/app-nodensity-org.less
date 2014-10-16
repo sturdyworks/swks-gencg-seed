@@ -1,0 +1,62 @@
+
+@import "bower_components/bootstrap/less/bootstrap.less";
+@import "bower_components/bootstrap/less/theme.less";
+
+@import "bower_components/font-awesome/less/font-awesome.less";
+@fa-font-path: "bower_components/font-awesome/fonts";
+
+@import "pesticide";
+
+/* Angular UI Bootstrap needs these rules */
+
+.nav,
+.pagination,
+.carousel,
+.panel-title a {
+  cursor: pointer;
+}
+
+/* Change navbar-btn highlight effect to better match navbar links */
+
+.navbar-default .navbar-btn {
+  color: #777777;
+  background-color: transparent;
+  border: 1px solid #777777;
+}
+.navbar-default .navbar-btn:hover,
+.navbar-default .navbar-btn:focus {
+  background-color: #f8f8f8;
+}
+.navbar-inverse .navbar-btn:hover,
+.navbar-inverse .navbar-btn:focus {
+  color: #ffffff;
+  background-color: transparent;
+  border: 1px solid #ffffff;
+}
+
+/* Fix missing margin on last item in verticle menu of squeezed navbar */
+
+.margin-fix-comfortable {
+  margin-left: 18px;
+}
+.margin-fix-cozy {
+  margin-left: 15px;
+}
+.margin-fix-compact {
+  margin-left: 12px;
+}
+
+.fa-icon-comfortable {
+  font-size: 18px;
+}
+.fa-icon-cozy {
+  font-size: 14px;
+}
+.fa-icon-compact {
+  font-size: 12px;
+}
+
+
+@import "home/home.less";
+@import "settings/settings.less";
+/* Add Component LESS Above */
