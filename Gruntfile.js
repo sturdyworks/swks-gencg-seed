@@ -10,7 +10,7 @@ var pkg = require('./package.json');
 //This enables users to create any directory structure they desire.
 var createFolderGlobs = function(fileTypePatterns) {
   fileTypePatterns = Array.isArray(fileTypePatterns) ? fileTypePatterns : [fileTypePatterns];
-  var ignore = ['node_modules','bower_components','dist','temp'];
+  var ignore = ['node_modules','bower_components','dist','cuts','logs','temp'];
   var fs = require('fs');
   return fs.readdirSync(process.cwd())
           .map(function(file){
@@ -94,8 +94,8 @@ module.exports = function (grunt) {
       main: {
         files: [
           {src: ['img/**'], dest: 'dist/'},
-          {src: ['bower_components/font-awesome/fonts/**'], dest: 'dist/',filter:'isFile',expand:true}
-          //{src: ['bower_components/angular-ui-utils/ui-utils-ieshiv.min.js'], dest: 'dist/'},
+          {src: ['bower_components/font-awesome/fonts/**'], dest: 'dist/',filter:'isFile',expand:true},
+          {src: ['bower_components/angular-ui-utils/ui-utils-ieshiv.min.js'], dest: 'dist/'}
           //{src: ['bower_components/select2/*.png','bower_components/select2/*.gif'], dest:'dist/css/',flatten:true,expand:true},
           //{src: ['bower_components/angular-mocks/angular-mocks.js'], dest: 'dist/'}
         ]
@@ -142,10 +142,20 @@ module.exports = function (grunt) {
       }
     },
     uglify: {
+      options: {
+        preserveComments: false,
+        compress        : false,
+        mangle          : false,
+        beautify        : {
+          beautify: false,
+          quote_keys: true,
+          ascii_only: true
+        }
+      },
       main: {
         src: 'temp/app.full.js',
         dest:'dist/app.full.min.js'
-      }
+      },
     },
     htmlmin: {
       main: {

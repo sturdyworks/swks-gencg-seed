@@ -1,0 +1,473 @@
+
+@import "bower_components/bootstrap/less/bootstrap.less";
+@import "bower_components/bootstrap/less/theme.less";
+
+@import "bower_components/font-awesome/less/font-awesome.less";
+@fa-font-path: "bower_components/font-awesome/fonts";
+
+@import "pesticide";
+
+/* Set Bootstrap icon font to Font Awesome */
+
+@icon-font-path:    "bower_components/font-awesome/fonts/";
+@icon-font-name:    "fontawesome-webfont";
+@icon-font-svg-id:  "fontawesome-webfont";
+
+/* Font Awesome color change to match Bootstrap 3.2 navbar-default */
+
+@fa-border-color:   @gray-lighter;
+@fa-inverse:        @gray-light;
+
+/* Angular UI Bootstrap needs these rules */
+
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+/* Change btn highlight effect to better match navbar links */
+
+.navbar-default .navbar-btn {
+  color: @navbar-default-color;
+  background-color: transparent;
+  border: 1px solid @navbar-default-color;
+}
+
+.navbar-default .navbar-btn:hover,
+.navbar-default .navbar-btn:focus {
+  background-color: @navbar-default-bg;
+}
+
+.navbar-inverse .navbar-btn:hover,
+.navbar-inverse .navbar-btn:focus {
+  color: @navbar-inverse-brand-hover-color;
+  background-color: transparent;
+  border: 1px solid @navbar-inverse-brand-hover-color;
+}
+
+/* Bootstrap defaults (e.g., our cozy display density) related rules */
+
+@font-size-base:   14px;
+@navbar-height:    50px;
+
+@comfortable-size: 1.25;  // large scale
+@compact-size:     0.85;  // small scale
+
+@font-size-large:  ceil((@font-size-base * @comfortable-size)); // ~18px
+@font-size-small:  ceil((@font-size-base * @compact-size));     // ~12px
+
+/* Display density (e.g., comfortable, compact) related rules */
+/* The cozy rules below are copies of Bootstrap 3.2 default rules */
+
+@navbar-height-comfortable: floor((@navbar-height * @comfortable-size)); // 62px
+@navbar-height-compact:     floor((@navbar-height * @compact-size));     // 42px
+
+@navbar-toggle-height: 34px;  // Bootstrap default
+@navbar-toggle-height-comfortable: floor((@navbar-toggle-height * @comfortable-size)); // 42px
+@navbar-toggle-height-compact:     floor((@navbar-toggle-height * @compact-size));     // 28px
+
+@navbar-padding-vertical-large: ((@navbar-height-comfortable - (@font-size-large * @line-height-large)) / 2);
+@navbar-padding-vertical-small: ((@navbar-height-compact     - (@font-size-small * @line-height-small)) / 2);
+
+/* Slightly larger than large calculations for increased navbar-brand type sizes  */
+@line-height-comfortable: (@font-size-large * @line-height-large * @comfortable-size);
+@navbar-padding-horizontal-comfortable: floor((@grid-gutter-width * @comfortable-size / 2));
+@navbar-padding-vertical-comfortable: ((@navbar-height-comfortable - @line-height-comfortable) / 2);
+
+/* Slightly smaller than small calculations for decreased dropdown-header type sizes  */
+@line-height-compact:     (@font-size-small * @line-height-small * @compact-size);
+@navbar-padding-horizontal-compact: floor((@grid-gutter-width * @compact-size / 2));
+@navbar-padding-vertical-compact: ((@navbar-height-compact - @line-height-compact) / 2);
+
+
+.btn-comfortable {
+  margin-bottom: 0;
+  .button-size(@padding-large-vertical; @padding-large-horizontal; @font-size-large; @line-height-large; @border-radius-large);
+}
+
+.btn-cozy {
+  margin-bottom: 0;
+  .button-size(@padding-base-vertical; @padding-base-horizontal; @font-size-base; @line-height-base; @border-radius-base);
+}
+
+.btn-compact {
+  margin-bottom: 0;
+  .button-size(@padding-small-vertical; @padding-small-horizontal; @font-size-small; @line-height-small; @border-radius-small);
+}
+
+.navbar-comfortable {
+  font-size: @font-size-large;
+  min-height: @navbar-height-comfortable;
+  margin-bottom: (@font-size-large * @line-height-large);
+
+  @media (min-width: @grid-float-breakpoint) {
+    border-radius: @border-radius-large;
+  }
+}
+
+.navbar-cozy {
+  font-size: @font-size-base;
+  min-height: @navbar-height;
+  margin-bottom: @navbar-margin-bottom;
+
+  @media (min-width: @grid-float-breakpoint) {
+    border-radius: @navbar-border-radius;
+  }
+}
+
+.navbar-compact {
+  font-size: @font-size-small;
+  min-height: @navbar-height-compact;
+  margin-bottom: (@font-size-small * @line-height-small);
+
+  @media (min-width: @grid-float-breakpoint) {
+    border-radius: @border-radius-small;
+  }
+}
+
+.navbar-nav-comfortable {
+  margin: (@navbar-padding-vertical-large / 2) -@navbar-padding-horizontal-comfortable;
+
+  > li > a {
+    padding-top:    (10px * @comfortable-size);
+    padding-bottom: (10px * @comfortable-size);
+    line-height:    (@font-size-large * @line-height-large);
+  }
+
+  @media (max-width: @grid-float-breakpoint-max) {
+    .open .dropdown-menu {
+      margin-top: 0;
+      border: 0;
+      > li > a,
+      .dropdown-header {
+        padding-top: (5px * @comfortable-size);
+        padding-right: (15px * @comfortable-size);
+        padding-bottom: (5px * @comfortable-size);
+        padding-left: (25px * @comfortable-size);
+      }
+      > li > a {
+        line-height: (@font-size-large * @line-height-large);
+      }
+    }
+  }
+
+  @media (min-width: @grid-float-breakpoint) {
+    margin: 0;  // Do not delete!
+
+    > li {
+      > a {
+        padding-top:    @navbar-padding-vertical-large;
+        padding-bottom: @navbar-padding-vertical-large;
+      }
+    }
+
+    &.navbar-right:last-child {
+      margin-right: -@navbar-padding-horizontal-comfortable;
+    }
+  }
+}
+
+.navbar-nav-cozy {
+  margin: (@navbar-padding-vertical / 2) -@navbar-padding-horizontal;
+
+  > li > a {
+    padding-top:    10px;
+    padding-bottom: 10px;
+    line-height:    @line-height-computed;
+  }
+
+  @media (max-width: @grid-float-breakpoint-max) {
+    .open .dropdown-menu {
+      margin-top: 0;
+      border: 0;
+      > li > a,
+      .dropdown-header {
+        padding-top: 5px;
+        padding-right: 15px;
+        padding-bottom: 5px;
+        padding-left: 25px;
+      }
+      > li > a {
+        line-height: @line-height-computed;
+      }
+    }
+  }
+
+  @media (min-width: @grid-float-breakpoint) {
+    margin: 0;  // Do not delete!
+
+    > li {
+      > a {
+        padding-top:    @navbar-padding-vertical;
+        padding-bottom: @navbar-padding-vertical;
+      }
+    }
+
+    &.navbar-right:last-child {
+      margin-right: -@navbar-padding-horizontal;
+    }
+  }
+}
+
+.navbar-nav-compact {
+  margin: (@navbar-padding-vertical-small / 2) -@navbar-padding-horizontal-compact;
+
+  > li > a {
+    padding-top:    (10px * @compact-size);
+    padding-bottom: (10px * @compact-size);
+    line-height:    (@font-size-small * @line-height-small);
+  }
+
+  @media (max-width: @grid-float-breakpoint-max) {
+    .open .dropdown-menu {
+      margin-top: 0;
+      border: 0;
+      > li > a,
+      .dropdown-header {
+        padding-top: (5px * @compact-size);
+        padding-right: (15px * @compact-size);
+        padding-bottom: (5px * @compact-size);
+        padding-left: (25px * @compact-size);
+      }
+      > li > a {
+        line-height: (@font-size-small * @line-height-small);
+      }
+    }
+  }
+
+  @media (min-width: @grid-float-breakpoint) {
+    margin: 0;  // Do not delete!
+
+    > li {
+      > a {
+        padding-top:    @navbar-padding-vertical-small;
+        padding-bottom: @navbar-padding-vertical-small;
+      }
+    }
+
+    &.navbar-right:last-child {
+      margin-right: -@navbar-padding-horizontal-compact;
+    }
+  }
+}
+
+.navbar-btn-comfortable {
+  /* margin calcs below similar to .navbar-vertical-align(...) */
+  margin-top: ((@navbar-height-comfortable - @input-height-large) / 2);
+  margin-bottom: ((@navbar-height-comfortable - @input-height-large) / 2);
+
+  &.btn-sm {
+     /* margin calcs below similar to .navbar-vertical-align(...) */
+     margin-top: ((@navbar-height-comfortable - @input-height-small) / 2);
+     margin-bottom: ((@navbar-height-comfortable - @input-height-small) / 2);
+  }
+  &.btn-xs {
+     /* margin calcs below similar to .navbar-vertical-align(...) */
+     margin-top: ((@navbar-height-comfortable - 22) / 2);
+     margin-bottom: ((@navbar-height-comfortable - 22) / 2);
+  }
+}
+
+.navbar-btn-cozy {
+  .navbar-vertical-align(@input-height-base);
+
+  &.btn-sm {
+    .navbar-vertical-align(@input-height-small);
+  }
+  &.btn-xs {
+    .navbar-vertical-align(22);
+  }
+}
+
+.navbar-btn-compact {
+  /* margin calcs below similar to .navbar-vertical-align(...) */
+  margin-top: ((@navbar-height-compact - @input-height-small) / 2);
+  margin-bottom: ((@navbar-height-compact - @input-height-small) / 2);
+
+  &.btn-sm {
+     /* margin calcs below similar to .navbar-vertical-align(...) */
+     margin-top: ((@navbar-height-compact - @input-height-small) / 2);
+     margin-bottom: ((@navbar-height-compact - @input-height-small) / 2);
+  }
+  &.btn-xs {
+     /* margin calcs below similar to .navbar-vertical-align(...) */
+     margin-top: ((@navbar-height-compact - 22) / 2);
+     margin-bottom: ((@navbar-height-compact - 22) / 2);
+  }
+}
+
+.navbar-brand-comfortable {
+  padding: @navbar-padding-vertical-comfortable @navbar-padding-horizontal-comfortable;
+  font-size: ceil((@font-size-large * @comfortable-size));
+  line-height: @line-height-comfortable;
+  height: @navbar-height-comfortable;
+
+  @media (min-width: @grid-float-breakpoint) {
+    .navbar > .container &,
+    .navbar > .container-fluid & {
+      margin-left: -@navbar-padding-horizontal-comfortable;
+    }
+  }
+}
+
+.navbar-brand-cozy {
+  padding: @navbar-padding-vertical @navbar-padding-horizontal;
+  font-size: @font-size-large;
+  line-height: @line-height-computed;
+  height: @navbar-height;
+
+  @media (min-width: @grid-float-breakpoint) {
+    .navbar > .container &,
+    .navbar > .container-fluid & {
+      margin-left: -@navbar-padding-horizontal;
+    }
+  }
+}
+
+.navbar-brand-compact {
+  padding: @navbar-padding-vertical-compact @navbar-padding-horizontal-compact;
+  font-size: ceil((@font-size-large * @compact-size));
+  line-height: @line-height-compact;
+  height: @navbar-height-compact;
+
+  @media (min-width: @grid-float-breakpoint) {
+    .navbar > .container &,
+    .navbar > .container-fluid & {
+      margin-left: -@navbar-padding-horizontal-compact;
+    }
+  }
+}
+
+.navbar-toggle-comfortable {
+  margin-right: @navbar-padding-horizontal-comfortable;
+  padding: (9px * @comfortable-size) (10px * @comfortable-size);
+  /* margin calcs below similar to .navbar-vertical-align(...) */
+  margin-top: ((@navbar-height-comfortable - @navbar-toggle-height-comfortable) / 2);
+  margin-bottom: ((@navbar-height-comfortable - @navbar-toggle-height-comfortable) / 2);
+  border-radius: @border-radius-large;
+  .icon-bar {
+    width: (22px * @comfortable-size);
+    height: (2px * @comfortable-size);
+  }
+  .icon-bar + .icon-bar {
+    margin-top: (4px * @comfortable-size);
+  }
+}
+
+.navbar-toggle-cozy {
+  margin-right: @navbar-padding-horizontal;
+  padding: 9px 10px;
+  .navbar-vertical-align(34px);
+  border-radius: @border-radius-base;
+  .icon-bar {
+    width: 22px;
+    height: 2px;
+  }
+  .icon-bar + .icon-bar {
+    margin-top: 4px;
+  }
+}
+
+.navbar-toggle-compact {
+  margin-right: @navbar-padding-horizontal-compact;
+  padding: (9px * @compact-size) (10px * @compact-size);
+  /* margin calcs below similar to .navbar-vertical-align(...) */
+  margin-top: ((@navbar-height-compact - @navbar-toggle-height-compact) / 2);
+  margin-bottom: ((@navbar-height-compact - @navbar-toggle-height-compact) / 2);
+  border-radius: @border-radius-small;
+  .icon-bar {
+    width: (22px * @compact-size);
+    height: (2px * @compact-size);
+  }
+  .icon-bar + .icon-bar {
+    margin-top: (4px * @compact-size);
+  }
+}
+
+.dropdown-menu-comfortable {
+  min-width: (160px * @comfortable-size);
+  padding: (5px * @comfortable-size) 0;
+  margin: (2px * @comfortable-size) 0 0; // override default ul
+  font-size: @font-size-large;
+  border-radius: @border-radius-large;
+  .box-shadow(0 (6px * @comfortable-size) (12px * @comfortable-size) rgba(0,0,0,.175));
+
+  > li > a {
+    padding: (3px * @comfortable-size) (20px * @comfortable-size);
+    line-height: @line-height-large;
+  }
+}
+
+.dropdown-menu-cozy {
+  min-width: 160px;
+  padding: 5px 0;
+  margin: 2px 0 0; // override default ul
+  font-size: @font-size-base;
+  border-radius: @border-radius-base;
+  .box-shadow(0 6px 12px rgba(0,0,0,.175));
+
+  > li > a {
+    padding: 3px 20px;
+    line-height: @line-height-base;
+  }
+}
+
+.dropdown-menu-compact {
+  min-width: (160px * @compact-size);
+  padding: (5px * @compact-size) 0;
+  margin: (2px * @compact-size) 0 0; // override default ul
+  font-size: @font-size-small;
+  border-radius: @border-radius-small;
+  .box-shadow(0 (6px * @compact-size) (12px * @compact-size) rgba(0,0,0,.175));
+  > li > a {
+    padding: (3px * @compact-size) (20px * @compact-size);
+    line-height: @line-height-large;
+  }
+}
+
+.dropdown-header-comfortable {
+  padding: (3px * @comfortable-size) (20px * @comfortable-size);
+  font-size: ceil((@font-size-small * @comfortable-size));
+  line-height: @line-height-comfortable;
+}
+
+.dropdown-header-cozy {
+  padding: 3px 20px;
+  font-size: @font-size-small;
+  line-height: @line-height-base;
+}
+
+.dropdown-header-compact {
+  padding: (3px * @compact-size) (20px * @compact-size);
+  font-size: ceil((@font-size-small * @compact-size));
+  line-height: @line-height-compact;
+}
+
+/* Fix missing margin on last item verticle menu of squeezed navbar */
+
+.margin-fix-comfortable {
+  margin-left: @navbar-padding-horizontal-comfortable;
+}
+
+.margin-fix-cozy {
+  margin-left: @navbar-padding-horizontal;
+}
+
+.margin-fix-compact {
+  margin-left: @navbar-padding-horizontal-compact;
+}
+
+.fa-icon-comfortable {
+  font-size: @font-size-large;
+}
+
+.fa-icon-cozy {
+  font-size: @font-size-base;
+}
+
+.fa-icon-compact {
+  font-size: @font-size-small;
+}
+
+
+@import "home/home.less";
+@import "settings/settings.less";
+/* Add Component LESS Above */
+
