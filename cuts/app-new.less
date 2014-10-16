@@ -1,0 +1,253 @@
+
+@import "bower_components/bootstrap/less/bootstrap.less";
+@import "bower_components/bootstrap/less/theme.less";
+
+@import "bower_components/font-awesome/less/font-awesome.less";
+@fa-font-path: "bower_components/font-awesome/fonts";
+
+@import "pesticide";
+
+/* Set Bootstrap icon font to Font Awesome */
+
+@icon-font-path:    "bower_components/font-awesome/fonts/";
+@icon-font-name:    "fontawesome-webfont";
+@icon-font-svg-id:  "fontawesome-webfont";
+
+/* Font Awesome color change to match Bootstrap 3.2 navbar-default */
+
+@fa-border-color:   @gray-lighter;
+@fa-inverse:        @gray-light;
+
+/* Angular UI Bootstrap needs these rules */
+
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+/* Change btn highlight effect to better match navbar links */
+
+.navbar-default .navbar-btn {
+  color: @navbar-default-color;
+  background-color: transparent;
+  border: 1px solid @navbar-default-color;
+  border-radius: 4px;
+}
+
+.navbar-default .navbar-btn:hover,
+.navbar-default .navbar-btn:focus {
+  background-color: @navbar-default-bg;
+}
+
+.navbar-inverse .navbar-btn:hover,
+.navbar-inverse .navbar-btn:focus {
+  color: @navbar-inverse-brand-hover-color;
+  background-color: transparent;
+  border: 1px solid @navbar-inverse-brand-hover-color;
+}
+
+/* Display density related rules */
+
+@comfortable-size: 1.25;
+@compact-size: 0.85;
+
+@navbar-height-comfortable: floor((@navbar-height * @comfortable-size));
+@navbar-height-compact: floor((@navbar-height * @compact-size));
+
+@navbar-padding-vertical-large: ((@navbar-height-comfortable - floor((@font-size-large * @line-height-large))) / 2);
+@navbar-padding-vertical-small: ((@navbar-height-compact - floor((@font-size-small * @line-height-small))) / 2);
+
+@navbar-padding-horizontal-comfortable: floor((@grid-gutter-width * @comfortable-size / 2));
+@navbar-padding-vertical-comfortable: ((@navbar-height-comfortable - floor((@font-size-large * @line-height-large * @comfortable-size))) / 2);
+@navbar-padding-horizontal-compact: floor((@grid-gutter-width * @compact-size / 2));
+@navbar-padding-vertical-compact: ((@navbar-height-compact - floor((@font-size-small * @line-height-small * @compact-size))) / 2);
+
+@navbar-toggle-height: 34px;
+@navbar-toggle-height-comfortable: floor((@navbar-toggle-height * @comfortable-size));
+@navbar-toggle-height-compact: floor((@navbar-toggle-height * @compact-size));
+
+.btn-comfortable {
+  .button-size(@padding-large-vertical; @padding-large-horizontal; @font-size-large; @line-height-large; @border-radius-large);
+}
+
+.btn-cozy {
+  .button-size(@padding-base-vertical; @padding-base-horizontal; @font-size-base; @line-height-base; @border-radius-base);
+}
+
+.btn-compact {
+  .button-size(@padding-small-vertical; @padding-small-horizontal; @font-size-small; @line-height-small; @border-radius-small);
+}
+
+.navbar-comfortable {
+  min-height: @navbar-height-comfortable;
+  margin-bottom: floor((@font-size-large * @line-height-large));
+  font-size: @font-size-large;
+}
+
+.navbar-cozy {
+  min-height: @navbar-height;
+  margin-bottom: @navbar-margin-bottom;
+  font-size: @font-size-base;
+}
+
+.navbar-compact {
+  min-height: @navbar-height-compact;
+  margin-bottom: floor((@font-size-small * @line-height-small));
+  font-size: @font-size-small;
+}
+
+.navbar-nav-comfortable > li > a {
+  margin: (@navbar-padding-vertical-large / 2) @navbar-padding-horizontal;
+  padding-top:    12px;
+  padding-bottom: 12px;
+  line-height: floor((@font-size-large * @line-height-large));
+}
+
+.navbar-nav-cozy > li > a {
+  margin: (@navbar-padding-vertical / 2) @navbar-padding-horizontal;
+  padding-top:    10px;
+  padding-bottom: 10px;
+  line-height: @line-height-computed;
+}
+
+.navbar-nav-compact > li > a {
+  margin: (@navbar-padding-vertical-small / 2) @navbar-padding-horizontal-compact;
+  padding-top:    8px;
+  padding-bottom: 8px;
+  line-height: floor((@font-size-small * @line-height-small));
+}
+
+.navbar-btn-comfortable {
+  .navbar-vertical-align(@input-height-small);
+}
+
+.navbar-btn-cozy {
+  .navbar-vertical-align(@input-height-base);
+}
+
+.navbar-btn-compact {
+  .navbar-vertical-align(@input-height-small);
+}
+
+.navbar-brand-comfortable {
+  height: @navbar-height-comfortable;
+  padding: @navbar-padding-vertical-comfortable @navbar-padding-horizontal-comfortable;
+  font-size: ceil((@font-size-large * @comfortable-size));
+  line-height: floor((@font-size-large * @line-height-large * @comfortable-size));
+}
+
+.navbar-brand-cozy {
+  height: @navbar-height;
+  padding: @navbar-padding-vertical @navbar-padding-horizontal;
+  font-size: @font-size-large;
+  line-height: @line-height-computed;
+}
+
+.navbar-brand-compact {
+  height: @navbar-height-compact;
+  padding: @navbar-padding-vertical-compact @navbar-padding-horizontal-compact;
+  font-size: ceil((@font-size-large * @compact-size));
+  line-height: floor((@font-size-large * @line-height-large * @compact-size));
+}
+
+.navbar-toggle-comfortable {
+  margin-right: @navbar-padding-horizontal-comfortable;
+  padding: 11px 12px;
+  /* margin calcs below equivalent to .navbar-vertical-align(...) */
+  margin-top: ((@navbar-height-comfortable - @navbar-toggle-height-comfortable) / 2);
+  margin-bottom: ((@navbar-height-comfortable - @navbar-toggle-height-comfortable) / 2);
+}
+
+.navbar-toggle-cozy {
+  margin-right: @navbar-padding-horizontal;
+  padding: 9px 10px;
+  .navbar-vertical-align(34px);
+}
+
+.navbar-toggle-compact {
+  margin-right: @navbar-padding-horizontal-compact;
+  padding: 7px 8px;
+  /* margin calcs below equivalent to .navbar-vertical-align(...) */
+  margin-top: ((@navbar-height-compact - @navbar-toggle-height-compact) / 2);
+  margin-bottom: ((@navbar-height-compact - @navbar-toggle-height-compact) / 2);
+}
+
+.dropdown-menu-comfortable {
+  padding: 6px 0;
+  margin: 3px 0 0;
+  font-size: @font-size-large;
+}
+
+.dropdown-menu-cozy {
+  padding: 5px 0;
+  margin: 2px 0 0;
+  font-size: @font-size-base;
+}
+
+.dropdown-menu-compact {
+  padding: 4px 0;
+  margin: 1px 0 0;
+  font-size: @font-size-small;
+}
+
+.dropdown-menu-comfortable > li > a {
+  padding: 4px 25px;
+  line-height: @line-height-large;
+}
+
+.dropdown-menu-cozy > li > a {
+  padding: 3px 20px;
+  line-height: @line-height-base;
+}
+
+.dropdown-menu-compact > li > a {
+  padding: 2px 16px;
+  line-height: @line-height-small;
+}
+
+.dropdown-header-comfortable {
+  padding: 4px 25px;
+  font-size: ceil((@font-size-small * @comfortable-size));
+  line-height: floor((@font-size-small * @line-height-base * @comfortable-size));
+}
+
+.dropdown-header-cozy {
+  padding: 3px 20px;
+  font-size: @font-size-small;
+  line-height: @line-height-base;
+}
+
+.dropdown-header-compact {
+  padding: 2px 16px;
+  font-size: ceil((@font-size-small * @compact-size));
+  line-height: floor((@font-size-small * @line-height-base * @compact-size));
+}
+
+/* Fix missing margin on last item in collaped navbar */
+
+.margin-fix-comfortable {
+  margin-left: (@navbar-padding-horizontal-comfortable * 2);
+}
+
+.margin-fix-cozy {
+  margin-left: (@navbar-padding-horizontal * 2);
+}
+
+.margin-fix-compact {
+  margin-left: (@navbar-padding-horizontal-compact * 2);
+}
+
+.fa-icon-comfortable {
+  font-size: @font-size-large;
+}
+
+.fa-icon-cozy {
+  font-size: @font-size-base;
+}
+
+.fa-icon-compact {
+  font-size: @font-size-small;
+}
+
+
+@import "home/home.less";
+@import "settings/settings.less";
+/* Add Component LESS Above */
+

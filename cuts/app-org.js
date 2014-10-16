@@ -1,6 +1,6 @@
 
 angular
-  .module('swksApp', [
+  .module('MainApp', [
     'ngAnimate',
     'ngCookies',
     'ngResource',
@@ -11,7 +11,27 @@ angular
     'ui.utils',
     'ui.router'
   ])
+  // Create a 'user defaults' service
+  // http://stackoverflow.com/questions/13769732/angular-js-init-ng-model-from-default-values/17823590#17823590
+  // .value("userSettings", /* your server-side JSON here */);
+  .directive('formAutofillFix', function() {
+    return function(scope, elem, attrs) {
+      // Fixes Chrome bug: https://groups.google.com/forum/#!topic/angular/6NlucSskQjY
+      elem.prop('method', 'POST');
+      // Fix autofill issues where Angular doesn't know about autofilled inputs
+      if(attrs.ngSubmit) {
+        setTimeout(function() {
+          elem.unbind('submit').submit(function(e) {
+            e.preventDefault();
+            elem.find('input, textarea, select').trigger('input').trigger('change').trigger('keydown');
+            scope.$apply(attrs.ngSubmit);
+          });
+        }, 0);
+      }
+    };
+  })
   .config(function($stateProvider, $urlRouterProvider) {
+    'use strict';
     $stateProvider
       .state('home', {
         url: "/",
@@ -20,7 +40,7 @@ angular
             template: '<h3>Home Aside</h3>'
           },
           'main': {
-            template: '<h3>Home Main</h3>'
+            templateUrl: 'home/home.html'
           }
         }
       })
@@ -28,10 +48,10 @@ angular
         url: '/about',
         views: {
           'aside': {
-            template: '<h3>about.aside</h3>'
+            template: '<h3>About Aside</h3>'
           },
           'main': {
-            template: '<h3>about.main</h3>'
+            template: '<h3>About Main</h3>'
           }
         }
       })
@@ -61,50 +81,15 @@ angular
         url: "/settings",
         views: {
           'aside': {
-            template: 'settings.aside'
+            template: '<h3>Settings Aside</h3>'
           },
           'main': {
-            template: 'settings.main'
+            templateUrl: 'settings/settings.html'
           }
         }
       });
 
     /* Add New States Above */
-
     $urlRouterProvider.when('', '/');
     $urlRouterProvider.otherwise("/error?code=404");
-
-    //$urlRouterProvider.otherwise(
-    //  function($injector, $location) {
-    //    $location.path('/');
-    //});
-    //$urlRouterProvider.otherwise('/');
-
-  })
-//angular.module('swksApp')
-  .controller('swksCtrl', function ($scope, $stateParams) {
-    $scope.errorCode = $stateParams.code;
-    $scope.data = [
-      {name: "Chrome", percent:20},
-      {name: "Firefox", percent:30},
-      {name: "Safari", percent:60}
-    ];
-  })
-//angular.module('swksApp.controllers', [])
-//  .controller('swksCtrl', ['$scope', '$state', function($scope, $state) {
-//    $scope.user = {};
-//    $scope.login = function() {};
-//  }]);
-//angular.module('swksApp')
-  .run(function($rootScope) {
-    $rootScope.safeApply = function(fn) {
-      var phase = $rootScope.$$phase;
-      if (phase === '$apply' || phase === '$digest') {
-        if (fn && (typeof(fn) === 'function')) {
-          fn();
-        }
-      } else {
-        this.$apply(fn);
-      }
-    };
   });

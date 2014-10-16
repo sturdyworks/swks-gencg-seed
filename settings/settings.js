@@ -6,8 +6,13 @@
  * A controller of MainApp
  */
 angular.module('MainApp')
-  .controller('SettingsController', function ($scope, $stateParams) {
+  .controller('SettingsController', function ($scope, $stateParams, $log) {
     'use strict';
+    $scope.displayDensity = $stateParams.displayDensity;
+    $scope.showSettings = function() {
+      $log.log('show settings');
+      return;
+    };
     $scope.data = [
       {name: "Chrome", percent:20},
       {name: "Firefox", percent:30},

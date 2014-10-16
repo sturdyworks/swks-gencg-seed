@@ -1,4 +1,7 @@
 
+  .value('valueSettings', {displayDensity: 'compact', navbarDensity: 'navbar-compact', navbarNavDensity: 'navbar-nav-compact', navbarBrandDensity: 'navbar-brand-compact'})
+
+
     /* generated via: yo cg-angular:partial settings */
     $stateProvider.state('settings', {
         url: '/settings',
