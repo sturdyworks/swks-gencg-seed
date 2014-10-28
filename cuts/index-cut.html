@@ -1,5 +1,102 @@
+        <li id="settings_group_menuitem" class="dropdown" role="menuitem">
+
+          <!-- Best to have dropdown-toggle behave like ARIA menubuton -->
+          <!-- defined at http://www.w3.org/TR/wai-aria-practices/#menubutton -->
+          <button type="button" class="btn btn-default navbar-btn dropdown-toggle" 
+                  data-ng-class="[settings.btnDensity, 
+                                  settings.navbarBtnDensity, 
+                                  settings.marginFixDensity]" 
+                  data-toggle="dropdown" data-target=".settings-menu" 
+                  role="button" aria-haspopup="true" aria-expanded="false">
+                  <!-- Use data-target=".settings-menu" for better behavior -->
+                  <!-- href="#" -->
+                  <!-- data-ng-click="isCollapsed = !isCollapsed" -->
+            <span class="fa fa-cog"></span>
+            <span id="settings_button" class="sr-only">&nbsp;&nbsp;Settings</span>
+            <span class="fa fa-caret-down"></span>
+          </button>
+
+          <!-- Best to have dropdown-menu behave like ARIA menu -->
+          <!-- defined at http://www.w3.org/TR/wai-aria-practices/#menu -->
+          <ul class="dropdown-menu settings-menu" 
+              data-ng-class="settings.dropdownMenuDensity" 
+              role="menu" aria-labelledby="settings_button" 
+              aria-expanded="false" aria-activedescendant="settings_menuitem">
+
+            <li data-ng-click="showSettings()" tabindex="-1" 
+                role="menuitem">
+              <a id="settings_menuitem" ui-sref="settings" 
+                 role="link">&nbsp;&nbsp;Settings</a>
+            </li>
 
             <li class="divider" role="separator" aria-orientation="verticle"></li>
+
+            <li class="dropdown-header" data-ng-class="settings.dropdownHeaderDensity"
+                role="separator" aria-orientation="verticle">Display Density</li>
+
+            <li data-ng-click="settings.displayDensity='comfortable'" 
+                tabindex="-1" role="menuitem">
+              <a data-ng-model="settings.displayDensity" role="link">
+              <span class="fa fa-check fa-fw" 
+                    data-ng-class="{invisible: settings.displayDensity != 'comfortable'}">
+              </span>&nbsp;&nbsp;Comfortable</a>
+            </li>
+
+            <li data-ng-click="settings.displayDensity='cozy'" 
+                tabindex="-1" role="menuitem">
+              <a data-ng-model="settings.displayDensity" role="link">
+              <span class="fa fa-check fa-fw" 
+                    data-ng-class="{invisible: settings.displayDensity != 'cozy'}">
+              </span>&nbsp;&nbsp;Cozy</a>
+            </li>
+
+            <li data-ng-click="settings.displayDensity='compact'" 
+                tabindex="-1" role="menuitem">
+              <a data-ng-model="settings.displayDensity" role="link">
+              <span class="fa fa-check fa-fw" 
+                    data-ng-class="{invisible: settings.displayDensity != 'compact'}">
+              </span>&nbsp;&nbsp;Compact</a>
+            </li>
+
+            <li class="divider" role="separator" aria-orientation="verticle"></li>
+
+            <li data-ng-click="showThemes()" tabindex="-1" 
+                role="menuitem">
+              <a id="themes_menuitem" ui-sref="themes" 
+                 role="link">&nbsp;&nbsp;Themes</a>
+            </li>
+
+          </ul>
+
+        </li>
+
+
+
+
+
+          <div class="btn-group">
+          <!-- Best to have dropdown-toggle behave like ARIA menubuton -->
+          <!-- defined at http://www.w3.org/TR/wai-aria-practices/#menubutton -->
+          <button type="button" class="btn btn-default navbar-btn dropdown-toggle" 
+                  data-ng-class="[settings.btnDensity, 
+                                  settings.navbarBtnDensity, 
+                                  settings.marginFixDensity]" 
+                  data-toggle="dropdown" data-target=".settings-menu" 
+                  role="button" aria-haspopup="true" aria-expanded="false">
+                  <!-- Use data-target=".settings-menu" for better behavior -->
+                  <!-- href="#" -->
+                  <!-- data-ng-click="isCollapsed = !isCollapsed" -->
+            <span class="fa fa-cog"></span>
+            <span id="settings_menu" class="sr-only">&nbsp;&nbsp;Settings</span>
+            <span class="fa fa-caret-down"></span>
+          </button>
+
+
+
+
+
+            <li class="divider" role="separator" aria-orientation="verticle"></li>
+
 
 
           <a class="dropdown-toggle" data-toggle="dropdown" role="menu">
@@ -9,6 +106,7 @@
           </a>
 
             <li class="dropdown-header" ng-init="settings.displayDensity='cozy'" role="presentation">Display Density</li>
+
 
 
           <ul class="dropdown-menu" data-ng-controller="SettingsController">

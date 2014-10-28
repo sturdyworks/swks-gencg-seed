@@ -1,9 +1,14 @@
 <!DOCTYPE html>
+<!-- ng-book solution xmlns:ng attribute allows older IE understand AngularJS -->
+<!-- https://www.ng-book.com/p/AngularJS-and-Internet-Explorer/ -->
 <html xmlns:ng="http://angularjs.org" class="no-js">
 <head>
   <title>Swks</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
+
+  <!-- Bootstrap 3.x solution http://getbootstrap.com/getting-started/#support -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Meta and link tags below for mobile from Google's Web Fundamentals articles -->
   <!-- https://developers.google.com/web/fundamentals/device-access/stickyness/ -->
@@ -79,72 +84,87 @@
   <!-- CSS style sheets for app -->
   <link href="app.less" type="text/css" rel="stylesheet/less">
 
-  <!-- Modernizr used by Webshim polyfill library -->
-  <script src="bower_components/modernizr/modernizr.js"></script>
-  <!--[if lte IE 8]
-  <script>
-    // Define custom directives in myCustomTags for ui-utils-ieshiv
-    window.myCustomTags = ['formAutofillFix'];
-  </script>
-  <script src="bower_components/angular-ui-utils/ui-utils-ieshiv.js"></script>
+  <!-- Bootstrap suggests html5shiv for enabling any missing HTML5 elements -->
+  <!-- Bootstrap suggests Respond.js for enabling any missing media queries -->
+  <!-- Read: http://getbootstrap.com/getting-started/#support-ie8-respondjs -->
+  <!--[if lt IE 9]>
+    <script src="bower_components/html5shiv/dist/html5shiv.min.js"></script>
+    <script src="bower_components/respond/dest/respond.min.js"></script>
   <![endif]-->
+  <!-- IE8 has some issues with @font-face when combined with :before -->
+  <!-- Read: http://getbootstrap.com/getting-started/#support-ie8-font-face -->
+  <!--[if IE 8]>
+    <script src="scripts/ie8-fontface-before-workaround.js"></script>
+  <![endif]-->
+  <!-- Bootstrap-UI solution -->
+  <!--[if lte IE 8]
+    <script>
+      // Define custom directives in myCustomTags for ui-utils-ieshiv
+      window.myCustomTags = ['formAutofillFix'];
+    </script>
+    <script src="bower_components/angular-ui-utils/ui-utils-ieshiv.js"></script>
+  <![endif]-->
+  <!-- Webshim polyfill library utilizes Modernizr -->
+  <script src="bower_components/modernizr/modernizr.js"></script>
 </head>
 
-<body id="data-ng-app" data-ng-app="MainApp" data-ng-controller="MainController">
+<body id="data-ng-app" data-ng-app="MainApp" 
+      data-ng-controller="MainController" role="application">
 
-  <!-- JS from Bower Components -->
-  <script src="bower_components/jquery/dist/jquery.js"></script>
-  <script src="bower_components/webshim/js-webshim/dev/polyfiller.js"></script>
-  <!-- Support older browsers -->
-  <script>
-    webshim.setOptions('basePath', '/bower_components/webshim/js-webshim/dev/shims/');
-    webshims.polyfill();
-  </script>
-  <script src="bower_components/bootstrap/js/collapse.js"></script>
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/angular-animate/angular-animate.js"></script>
-  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-  <script src="bower_components/angular-resource/angular-resource.js"></script>
-  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-  <script src="bower_components/angular-touch/angular-touch.js"></script>
-  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-  <script src="bower_components/angular-ui-utils/ui-utils.js"></script>
-  <script src="bower_components/lodash/dist/lodash.compat.js"></script>
-  <script src="bower_components/restangular/dist/restangular.js"></script>
-  <!-- Add New Bower Component JS Above -->
+  <!-- Yeoman Angular Generator solution -->
+  <!--[if lt IE 7]>
+    <p class="browsehappy">
+      You are using an <strong>outdated</strong> browser. 
+      Please <a href="http://browsehappy.com/">upgrade your browser</a> 
+      to improve your experience.
+    </p>
+  <![endif]-->
 
-  <section class="container-fluid navbar navbar-default navbar-inverse" 
+  <!-- ARIA solution http://a11yproject.com/posts/skip-nav-links/ -->
+  <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+  <section class="container-fluid navbar navbar-default" 
            data-ng-class="settings.navbarDensity" role="navigation">
 
     <header class="navbar-header">
-      <a ui-sref="home" class="navbar-brand" data-ng-click="showHome()" 
-         data-ng-class="settings.navbarBrandDensity">Density</a>
+      <a class="navbar-brand" data-ng-class="settings.navbarBrandDensity" 
+         role="presentation">Display Density</a>
 
-      <button type="button" class="btn navbar-btn navbar-toggle" 
-              data-ng-class="[settings.btnDensity, settings.navbarBtnDensity, settings.navbarToggleDensity]" 
-              data-toggle="collapse" data-ng-click="isCollapsed = !isCollapsed">
+      <button type="button" class="btn navbar-btn navbar-toggle"
+              data-ng-class="[settings.btnDensity, 
+                              settings.navbarBtnDensity, 
+                              settings.navbarToggleDensity]" 
+              data-toggle="collapse" 
+              role="button" aria-expanded="true" aria-controls="main_menu" 
+              data-ng-click="isCollapsed = !isCollapsed">
+              <!-- Avoid data-target=".main-collapse" for worse behavior -->
         <span class="sr-only">Toggle navigation</span>
         <span class="fa fa-bars fa-fw" data-ng-class="settings.faIconDensity"></span>
       </button>
     </header>
 
-    <nav class="navbar-collapse collapse" collapse="isCollapsed">
+    <!-- TODO: main_menubar property aria-expanded="false" should mutate --->
+    <nav id="main_menubar" collapse="isCollapsed" 
+         class="collapse navbar-collapse main-collapse" 
+         role="navigation" aria-expanded="true">
 
-      <ul class="nav navbar-nav" data-ng-class="settings.navbarNavDensity" role="menu">
+      <!-- TODO: aria-activedescendant state 'home_menuitem' should change -->
+      <!-- (e.g., aria-activedescendant="about_menuitem") --->
+      <ul class="nav navbar-nav" data-ng-class="settings.navbarNavDensity" 
+          role="menu" aria-activedescendant="home_menuitem">
 
-        <li data-ng-click="showHome()" role="presentation">
-          <a ui-sref="home" role="menuitem">
+        <li id="home_menuitem" data-ng-click="showHome()" role="menuitem">
+          <a ui-sref="home" role="link">
           <span class="fa fa-home fa-fw"></span>&nbsp;&nbsp;Home</a>
         </li>
 
-        <li data-ng-click="showAbout()" role="presentation">
-          <a ui-sref="about" role="menuitem">
+        <li id="about_menuitem" data-ng-click="showAbout()" role="menuitem">
+          <a ui-sref="about" role="link">
           <span class="fa fa-comment fa-fw"></span>&nbsp;&nbsp;About</a>
         </li>
 
-        <li data-ng-click="showContact()" role="presentation">
-          <a ui-sref="contact" role="menuitem">
+        <li id="contact_menuitem" data-ng-click="showContact()" role="menuitem">
+          <a ui-sref="contact" role="link">
           <span class="fa fa-paper-plane-o fa-fw"></span>&nbsp;&nbsp;Contact</a>
         </li>
 
@@ -152,60 +172,89 @@
       <ul class="nav navbar-nav navbar-right" 
           data-ng-class="settings.navbarNavDensity" role="menu">
 
-        <li data-ng-click="showUserLogin()">
-          <a ui-sref="userLogin" role="menuitem">
+        <li id="userLogin_menuitem" data-ng-click="showUserLogin()" role="menuitem">
+          <a ui-sref="userLogin" role="link">
           <span class="fa fa-user fa-fw"></span>&nbsp;&nbsp;Login</a>
         </li>
 
-        <li class="dropdown">
-          <button type="button" class="btn navbar-btn dropdown-toggle" 
-                  data-ng-class="[settings.btnDensity, settings.navbarBtnDensity, settings.marginFixDensity]" 
-                  data-toggle="dropdown" role="menu">
+        <li id="settings_group_menuitem" class="dropdown" role="menuitem">
+
+          <!-- Best to have dropdown-toggle behave like ARIA menubuton -->
+          <!-- defined at http://www.w3.org/TR/wai-aria-practices/#menubutton -->
+          <button type="button" class="btn btn-default navbar-btn dropdown-toggle" 
+                  data-ng-class="[settings.btnDensity, 
+                                  settings.navbarBtnDensity, 
+                                  settings.marginFixDensity]" 
+                  data-toggle="dropdown" data-target=".settings-menu" 
+                  role="button" aria-haspopup="true" aria-expanded="false">
+                  <!-- Use data-target=".settings-menu" for better behavior -->
+                  <!-- href="#" -->
+                  <!-- data-ng-click="isCollapsed = !isCollapsed" -->
             <span class="fa fa-cog"></span>
-            <span class="sr-only">&nbsp;&nbsp;Settings</span>
+            <span id="settings_button" class="sr-only">&nbsp;&nbsp;Settings</span>
             <span class="fa fa-caret-down"></span>
           </button>
 
-          <ul class="dropdown-menu" data-ng-class="settings.dropdownMenuDensity">
+          <!-- Best to have dropdown-menu behave like ARIA menu -->
+          <!-- defined at http://www.w3.org/TR/wai-aria-practices/#menu -->
+          <ul class="dropdown-menu settings-menu" 
+              data-ng-class="settings.dropdownMenuDensity" 
+              role="menu" aria-labelledby="settings_button" 
+              aria-expanded="false" aria-activedescendant="settings_menuitem">
 
-            <li class="dropdown-header" data-ng-class="settings.dropdownHeaderDensity" 
-                role="presentation">Display Density</li>
+            <li data-ng-click="showSettings()" tabindex="-1" 
+                role="menuitem">
+              <a id="settings_menuitem" ui-sref="settings" 
+                 role="link">&nbsp;&nbsp;Settings</a>
+            </li>
 
-            <li data-ng-click="settings.displayDensity='comfortable'" role="presentation">
-              <a data-ng-model="settings.displayDensity" tabindex="-1" role="menuitem">
+            <li class="divider" role="separator" aria-orientation="verticle"></li>
+
+            <li class="dropdown-header" data-ng-class="settings.dropdownHeaderDensity"
+                role="separator" aria-orientation="verticle">Display Density</li>
+
+            <li data-ng-click="settings.displayDensity='comfortable'" 
+                tabindex="-1" role="menuitem">
+              <a data-ng-model="settings.displayDensity" role="link">
               <span class="fa fa-check fa-fw" 
                     data-ng-class="{invisible: settings.displayDensity != 'comfortable'}">
               </span>&nbsp;&nbsp;Comfortable</a>
             </li>
 
-            <li data-ng-click="settings.displayDensity='cozy'" role="presentation">
-              <a data-ng-model="settings.displayDensity" tabindex="-1" role="menuitem">
+            <li data-ng-click="settings.displayDensity='cozy'" 
+                tabindex="-1" role="menuitem">
+              <a data-ng-model="settings.displayDensity" role="link">
               <span class="fa fa-check fa-fw" 
                     data-ng-class="{invisible: settings.displayDensity != 'cozy'}">
               </span>&nbsp;&nbsp;Cozy</a>
             </li>
 
-            <li data-ng-click="settings.displayDensity='compact'" role="presentation">
-              <a data-ng-model="settings.displayDensity" tabindex="-1" role="menuitem">
+            <li data-ng-click="settings.displayDensity='compact'" 
+                tabindex="-1" role="menuitem">
+              <a data-ng-model="settings.displayDensity" role="link">
               <span class="fa fa-check fa-fw" 
                     data-ng-class="{invisible: settings.displayDensity != 'compact'}">
               </span>&nbsp;&nbsp;Compact</a>
             </li>
 
-            <li role="presentation" class="divider"></li>
+            <li class="divider" role="separator" aria-orientation="verticle"></li>
 
-            <li data-ng-click="showSettings()" role="presentation">
-              <a ui-sref="settings" tabindex="-1" role="menuitem">&nbsp;&nbsp;Settings</a>
+            <li data-ng-click="showThemes()" tabindex="-1" 
+                role="menuitem">
+              <a id="themes_menuitem" ui-sref="themes" 
+                 role="link">&nbsp;&nbsp;Themes</a>
             </li>
 
           </ul>
+
         </li>
       </ul>
     </nav>
   </section>
 
   <!-- MAIN CONTENT -->
-  <section id="content" class="container-fluid">
+  <!-- Note: role="main" is a non-obtrusive alternative for "skip to main content" link -->
+  <section id="content" class="container-fluid" role="main">
     <header class="row">
       <!-- CONTENT INJECTED INTO VIEWS -->
       <nav ui-view="main" class="col-xs-12 col-sm-6 col-lg-8"></nav>
@@ -222,6 +271,29 @@
   <script src="http://localhost:35729/livereload.js" data-concat="false"></script>
   <script src="bower_components/less.js/dist/less-1.7.5.js" data-concat="false"></script>
 
+  <!-- JS from Bower Components -->
+  <!-- Webshim polyfill library for older browsers requires jQuery -->
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/webshim/js-webshim/dev/polyfiller.js"></script>
+  <script>
+    webshim.setOptions('basePath', '/bower_components/webshim/js-webshim/dev/shims/');
+    webshims.polyfill();
+  </script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="bower_components/bootstrapaccessibilityplugin/plugins/js/bootstrap-accessibility.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <script src="bower_components/angular-touch/angular-touch.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="bower_components/angular-ui-utils/ui-utils.js"></script>
+  <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+  <script src="bower_components/restangular/dist/restangular.js"></script>
+  <!-- Add New Bower Component JS Above -->
+
   <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
   <script>
     (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
@@ -231,6 +303,14 @@
     r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
     ga('create','UA-XXXXX-X');ga('send','pageview');
   </script>
+
+  <!-- Bootstrap workaround for IE10 viewport for Surface/desktop Windows 8 -->
+  <!-- Read: http://getbootstrap.com/getting-started/#support-ie10-width -->
+  <script src="scripts/ie10-viewport-bug-workaround.js"></script>
+  <!-- Bootstrap Android workaround for <select> and border-radius, border -->
+  <!-- http://getbootstrap.com/getting-started/#support-android-stock-browser -->
+  <script src="scripts/android-select-border-workaround.js"></script>
+
 
   <!-- Main App JS -->
   <script src="app.js"></script>
