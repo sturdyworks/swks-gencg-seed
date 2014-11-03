@@ -9,6 +9,17 @@ angular.module('MainApp')
   .controller('MainController', function ($scope, $stateParams, $log) {
     'use strict';
 
+    $scope.goToOnSpace = function (event, locationToGo) {
+      if (event.keyCode === 32) {
+        // Read: https://docs.angularjs.org/guide/$location
+        // Replace
+        // $location.href = locationToGo
+        // $location.update(locationToGo)
+        // With
+        window.location.href = '/#/' + locationToGo;
+      }
+    };
+
     $scope.$watch('settings.displayDensity', function() {
       $scope.settings.btnDensity = 'btn-' + $scope.settings.displayDensity;
       $scope.settings.navbarDensity = 'navbar-' + $scope.settings.displayDensity;
@@ -64,6 +75,9 @@ angular.module('MainApp')
     };
     $rootScope.showSettings = function() {
       $log.log('show settings');
+    };
+    $rootScope.showThemes = function() {
+      $log.log('show themes');
     };
 
     $rootScope.settings = {

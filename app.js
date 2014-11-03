@@ -67,7 +67,7 @@ angular
         }
       })
       .state('userLogin', {
-        url: "/userlogin",
+        url: "/userLogin",
         views: {
           'aside': {
             template: 'userLogin.aside'
@@ -85,6 +85,17 @@ angular
           },
           'main': {
             templateUrl: 'settings/settings.html'
+          }
+        }
+      })
+      .state('themes', {
+        url: "/themes",
+        views: {
+          'aside': {
+            template: '<h3>Themes Aside</h3>'
+          },
+          'main': {
+            template: '<h3>Themes Main</h3>'
           }
         }
       });
