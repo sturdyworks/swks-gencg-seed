@@ -1,0 +1,248 @@
+/* Themes to meet guidelines for accessibility */
+/* mixins */
+.sr-only {
+  clip: rect(1px, 1px, 1px, 1px);
+  position: absolute;
+  /* reset */
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+}
+.sr-only:focus {
+  background-color: #ffffff;
+  border-radius: 4px;
+  clip: auto;
+  color: #132531;
+  display: block;
+  font-size: 14px;
+  height: 50px;
+  line-height: 20px;
+  padding: 15px 15px;
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  text-decoration: none;
+  text-transform: none;
+  width: auto;
+  z-index: 100000;
+  /* Above WP toolbar */
+}
+/* this mixins give output generate duplicate CSS code 
+ * alternatively you will to have to rewrite the original mixin in buttons.less	
+ */
+.navbar-brand {
+  font-size: 20px;
+}
+/* buttons */
+/* link on white background */
+/* Set Bootstrap icon font to Font Awesome */
+/* IE10 viewport hack for Surface/desktop Windows 8 bug */
+@-webkit-viewport {
+  width: device-width;
+}
+@-moz-viewport {
+  width: device-width;
+}
+@-ms-viewport {
+  width: device-width;
+}
+@-o-viewport {
+  width: device-width;
+}
+@viewport {
+  width: device-width;
+}
+/* Font Awesome color change to match Bootstrap 3.2 navbar-default */
+/* Angular UI Bootstrap needs these rules */
+.nav,
+.pagination,
+.carousel,
+.panel-title a {
+  cursor: pointer;
+}
+/* Change btn highlight effect to better match navbar links */
+.navbar-default .navbar-btn {
+  color: #ffffff;
+  background-color: transparent;
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+}
+.navbar-default .navbar-btn:hover,
+.navbar-default .navbar-btn:focus {
+  background-color: #132531;
+}
+.navbar-inverse .navbar-btn:hover,
+.navbar-inverse .navbar-btn:focus {
+  color: #ffffff;
+  background-color: transparent;
+  border: 1px solid #ffffff;
+}
+/* Bootstrap data-target related classes are placeholders */
+/* Display density related rules */
+.btn-comfortable {
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 6px;
+}
+.btn-cozy {
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+}
+.btn-compact {
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+.navbar-comfortable {
+  min-height: 62px;
+  margin-bottom: 23px;
+  font-size: 18px;
+}
+.navbar-cozy {
+  min-height: 50px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+.navbar-compact {
+  min-height: 42px;
+  margin-bottom: 18px;
+  font-size: 12px;
+}
+.navbar-nav-comfortable > li > a {
+  margin: 9.75px 15px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  line-height: 23px;
+}
+.navbar-nav-cozy > li > a {
+  margin: 7.5px 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  line-height: 20px;
+}
+.navbar-nav-compact > li > a {
+  margin: 6px 12px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  line-height: 18px;
+}
+.navbar-btn-comfortable {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.navbar-btn-cozy {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+.navbar-btn-compact {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.navbar-brand-comfortable {
+  height: 62px;
+  padding: 16.5px 18px;
+  font-size: 23px;
+  line-height: 29px;
+}
+.navbar-brand-cozy {
+  height: 50px;
+  padding: 15px 15px;
+  font-size: 18px;
+  line-height: 20px;
+}
+.navbar-brand-compact {
+  height: 42px;
+  padding: 13.5px 12px;
+  font-size: 16px;
+  line-height: 20px;
+}
+.navbar-toggle-comfortable {
+  margin-right: 18px;
+  padding: 11px 12px;
+  /* margin calcs below equivalent to .navbar-vertical-align(...) */
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.navbar-toggle-cozy {
+  margin-right: 15px;
+  padding: 9px 10px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+.navbar-toggle-compact {
+  margin-right: 12px;
+  padding: 7px 8px;
+  /* margin calcs below equivalent to .navbar-vertical-align(...) */
+  margin-top: 7px;
+  margin-bottom: 7px;
+}
+.dropdown-menu-comfortable {
+  padding: 6px 0;
+  margin: 3px 0 0;
+  font-size: 18px;
+}
+.dropdown-menu-cozy {
+  padding: 5px 0;
+  margin: 2px 0 0;
+  font-size: 14px;
+}
+.dropdown-menu-compact {
+  padding: 4px 0;
+  margin: 1px 0 0;
+  font-size: 12px;
+}
+.dropdown-menu-comfortable > li > a {
+  padding: 4px 25px;
+  line-height: 1.33;
+}
+.dropdown-menu-cozy > li > a {
+  padding: 3px 20px;
+  line-height: 1.42857143;
+}
+.dropdown-menu-compact > li > a {
+  padding: 2px 16px;
+  line-height: 1.5;
+}
+.dropdown-header-comfortable {
+  padding: 4px 25px;
+  font-size: 15px;
+  line-height: 21px;
+}
+.dropdown-header-cozy {
+  padding: 3px 20px;
+  font-size: 12px;
+  line-height: 1.42857143;
+}
+.dropdown-header-compact {
+  padding: 2px 16px;
+  font-size: 11px;
+  line-height: 14px;
+}
+/* Fix margin on last item in collaped navbar. See related doc: */
+/* http://getbootstrap.com/components/#navbar-component-alignment */
+.margin-fix-comfortable {
+  margin-left: 36px;
+}
+.margin-fix-cozy {
+  margin-left: 30px;
+}
+.margin-fix-compact {
+  margin-left: 24px;
+}
+.fa-icon-comfortable {
+  font-size: 18px;
+}
+.fa-icon-cozy {
+  font-size: 14px;
+}
+.fa-icon-compact {
+  font-size: 12px;
+}
+/* Add Component LESS Above */
