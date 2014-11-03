@@ -9,7 +9,7 @@ angular.module('MainApp')
   .run(function($rootScope, $state, $stateParams, $log) {
     'use strict';
 
-    $state.transitionTo('home');
+    $state.go('home');
     // You need to put $state on $rootScope to access it in controller
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
