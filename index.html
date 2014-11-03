@@ -161,19 +161,19 @@
 
         <li role="presentation">
           <a id="home-tab" ui-sref="home" tabindex="1" role="tab" 
-             ng-keypress="goToOnSpace($event, 'home')">
+             data-ng-keypress="goToOnSpace($event, 'home')">
              <span class="fa fa-home fa-fw"></span>&nbsp;&nbsp;Home</a>
         </li>
 
         <li role="presentation">
           <a id="about-tab" ui-sref="about" tabindex="2" role="tab" 
-             ng-keypress="goToOnSpace($event, 'about')">
+             data-ng-keypress="goToOnSpace($event, 'about')">
             <span class="fa fa-comment fa-fw"></span>&nbsp;&nbsp;About</a>
         </li>
 
         <li role="presentation">
           <a id="contact-tab" ui-sref="contact" tabindex="3" role="tab"
-             ng-keypress="goToOnSpace($event, 'contact')">
+             data-ng-keypress="goToOnSpace($event, 'contact')">
             <span class="fa fa-paper-plane-o fa-fw"></span>&nbsp;&nbsp;Contact</a>
         </li>
 
@@ -183,7 +183,7 @@
 
         <li role="presentation">
           <a id="userLogin-tab" ui-sref="userLogin" tabindex="4" role="tab" 
-             ng-keypress="goToOnSpace($event, 'userLogin')">
+             data-ng-keypress="goToOnSpace($event, 'userLogin')">
           <span class="fa fa-user fa-fw"></span>&nbsp;&nbsp;Login</a>
         </li>
 
@@ -216,8 +216,8 @@
               role="menu" aria-labelledby="settings-button">
 
             <li role="presentation">
-              <!-- ng-keypress="goToOnSpace($event, 'settings')" -->
               <a id="settings-item" ui-sref="settings" tabindex="-1" 
+                 data-ng-keypress="goToOnSpace($event, 'settings')" 
                  role="menuitem">&nbsp;&nbsp;Settings</a>
             </li>
 
@@ -253,8 +253,8 @@
             <li class="divider" role="separator" aria-orientation="verticle"></li>
 
             <li role="presentation">
-              <!-- ng-keypress="goToOnSpace($event, 'themes')" -->
               <a id="themes-item" ui-sref="themes" tabindex="-1" 
+                 data-ng-keypress="goToOnSpace($event, 'themes')" 
                  role="menuitem">&nbsp;&nbsp;Themes</a>
             </li>
 
@@ -288,11 +288,6 @@
   <!-- JS from Bower Components -->
   <!-- Webshim polyfill library for older browsers requires jQuery -->
   <script src="bower_components/jquery/dist/jquery.js"></script>
-  <script src="bower_components/webshim/js-webshim/dev/polyfiller.js"></script>
-  <script>
-    webshim.setOptions('basePath', '/bower_components/webshim/js-webshim/dev/shims/');
-    webshims.polyfill();
-  </script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
   <script src="bower_components/bootstrapaccessibilityplugin/plugins/js/bootstrap-accessibility_1.0.3.js"></script>
   <script src="bower_components/angular/angular.js"></script>

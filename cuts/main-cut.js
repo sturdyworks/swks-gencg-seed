@@ -1,4 +1,52 @@
 
+
+    $rootScope.safeApply = function(fn) {
+      var phase = $rootScope.$$phase;
+      if (phase === '$apply' || phase === '$digest') {
+        if (fn && (typeof(fn) === 'function')) {
+          fn();
+        }
+      } else {
+        this.$apply(fn);
+      }
+    };
+
+    $rootScope.showHome = function() {
+      $log.log('show home');
+    };
+    $rootScope.showAbout = function() {
+      $log.log('show about');
+    };
+    $rootScope.showContact = function() {
+      $log.log('show contact');
+    };
+    $rootScope.showUserLogin = function() {
+      $log.log('show userLogin');
+    };
+    $rootScope.showSettings = function() {
+      $log.log('show settings');
+    };
+    $rootScope.showThemes = function() {
+      $log.log('show themes');
+    };
+
+
+
+    $scope.goToOnSpace = function (event, locationToGo) {
+      if (event.keyCode === 32) {
+        // Read: https://docs.angularjs.org/guide/$location
+        $log.log(window.location.href);
+        if (locationToGo === "home") {
+          window.location.href = '/#/';
+          $log.log(window.location.href);
+        } 
+        else {
+          window.location.href = '/#/' + locationToGo;
+          $log.log(window.location.href);
+        }
+      }
+    };
+
     $scope.goToOnSpace = function ($event, locationToGo) {
       if ($event.keyCode === 32) {
         window.location.href = '/' + locationToGo;
