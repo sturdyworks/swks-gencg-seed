@@ -1,3 +1,13 @@
+
+    $scope.goToOnSpace = function ($event, locationToGo) {
+      if ($event.keyCode === 32) {
+        window.location.href = '/' + locationToGo;
+        $log.log(window.location.href);
+      }
+    };
+
+
+
       if ($scope.settings.displayDensity === 'comfortable') {
         $scope.settings.faIconDensity = 'fs-3x';
       } else if ($scope.settings.displayDensity === 'cozy') {

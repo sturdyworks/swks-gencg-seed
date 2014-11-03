@@ -23,8 +23,8 @@
               role="menu" aria-labelledby="settings_button" 
               aria-expanded="false" aria-activedescendant="settings_menuitem">
 
-            <li data-ng-click="showSettings()" tabindex="-1" 
-                role="menuitem">
+            <li data-ng-click="showSettings()" ng-keyup="$event.keyCode == 32 ? showSettings() : null"
+                role="menuitem" tabindex="-1">
               <a id="settings_menuitem" ui-sref="settings" 
                  role="link">&nbsp;&nbsp;Settings</a>
             </li>

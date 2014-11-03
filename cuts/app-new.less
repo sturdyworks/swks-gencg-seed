@@ -2,8 +2,13 @@
 @import "bower_components/bootstrap/less/bootstrap.less";
 @import "bower_components/bootstrap/less/theme.less";
 
+// Will use FontAwesome instead of Glyphicons
 @import "bower_components/font-awesome/less/font-awesome.less";
 @fa-font-path: "bower_components/font-awesome/fonts";
+
+// Themes to meet guidelines for accessibility
+@import (css) "bower_components/bootstrapaccessibilityplugin/plugins/css/bootstrap-accessibility_1.0.3.css";
+@import "styles/bootstrap-a11y-theme/a11ytheme-swks.less";
 
 @import "pesticide";
 
@@ -12,6 +17,14 @@
 @icon-font-path:    "bower_components/font-awesome/fonts/";
 @icon-font-name:    "fontawesome-webfont";
 @icon-font-svg-id:  "fontawesome-webfont";
+
+/* IE10 viewport hack for Surface/desktop Windows 8 bug */
+
+@-webkit-viewport   { width: device-width; }
+@-moz-viewport      { width: device-width; }
+@-ms-viewport       { width: device-width; }
+@-o-viewport        { width: device-width; }
+@viewport           { width: device-width; }
 
 /* Font Awesome color change to match Bootstrap 3.2 navbar-default */
 
@@ -41,6 +54,11 @@
   color: @navbar-inverse-brand-hover-color;
   background-color: transparent;
   border: 1px solid @navbar-inverse-brand-hover-color;
+}
+
+/* Bootstrap data-target related classes are placeholders */
+
+.main-navbar-collapse, .settings-dropdown-menu {
 }
 
 /* Display density related rules */
@@ -220,7 +238,8 @@
   line-height: floor((@font-size-small * @line-height-base * @compact-size));
 }
 
-/* Fix missing margin on last item in collaped navbar */
+/* Fix margin on last item in collaped navbar. See related doc: */
+/* http://getbootstrap.com/components/#navbar-component-alignment */
 
 .margin-fix-comfortable {
   margin-left: (@navbar-padding-horizontal-comfortable * 2);

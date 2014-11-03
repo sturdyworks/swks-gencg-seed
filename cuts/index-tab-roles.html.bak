@@ -120,8 +120,9 @@
     </p>
   <![endif]-->
 
-  <!-- ARIA solution http://a11yproject.com/posts/skip-nav-links/ -->
-  <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+  <!-- Using role="main" with element with id="content" as non-obtrusive alt. -->
+  <!-- to link below. Read:  http://a11yproject.com/posts/skip-nav-links/ -->
+  <!-- <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a> -->
 
   <section class="container-fluid navbar navbar-default" 
            data-ng-class="settings.navbarDensity" role="navigation">
@@ -131,16 +132,17 @@
               data-ng-class="[settings.btnDensity, 
                               settings.navbarBtnDensity, 
                               settings.navbarToggleDensity]" 
-              data-toggle="collapse" data-parent="#main-tablist" data-target=".main-collapse"
-              role="tab" aria-expanded="false" aria-selected="false" aria-controls="main-tablist" 
+              data-toggle="collapse" role="tab" aria-controls="main-tablist" 
+              data-parent="#main-tablist" data-target=".main-collapse"
               data-ng-click="isCollapsed = !isCollapsed">
-              <!-- Might avoid: class="btn navbar-btn" data-target=".main-collapse" -->
+        <!-- Should not set: aria-expanded="true" since state changes with screen size -->
+        <!-- Avoid? aria-controls="main-tablist" data-parent="#main-tablist" data-target=".main-collapse" -->
         <span class="sr-only">Toggle navigation</span>
         <span class="fa fa-bars fa-fw" data-ng-class="settings.faIconDensity"></span>
       </button>
 
-      <a class="navbar-brand" 
-         data-ng-class="settings.navbarBrandDensity">Display Density</a>
+      <a class="navbar-brand" data-ng-class="settings.navbarBrandDensity" 
+         role="presentation">Display Density</a>
     </header>
 
     <!-- TODO: main_menubar property aria-expanded="false" should mutate --->
@@ -149,31 +151,34 @@
 
       <!-- TODO: aria-activedescendant state 'home-tab' should change -->
       <!-- (e.g., aria-activedescendant="about-tab") --->
-      <ul id="main-tablist" class="nav nav-tabs" data-ng-class="settings.navbarNavDensity" 
+      <ul id="main-tablist" class="nav navbar-nav" data-ng-class="settings.navbarNavDensity" 
           role="tablist" aria-activedescendant="home-tab">
 
-        <li id="home-tab" data-ng-click="showHome()">
+        <li id="home-tab" data-ng-click="showHome()" role="presentation">
           <a ui-sref="home" tabindex="1" role="tab">
           <span class="fa fa-home fa-fw"></span>&nbsp;&nbsp;Home</a>
         </li>
-+
-        <li id="about-tab" data-ng-click="showAbout()">
+
+        <li id="about-tab" data-ng-click="showAbout()" role="presentation">
           <a ui-sref="about" tabindex="2" role="tab">
           <span class="fa fa-comment fa-fw"></span>&nbsp;&nbsp;About</a>
         </li>
 
-        <li id="contact-tab" data-ng-click="showContact()">
+        <li id="contact-tab" data-ng-click="showContact()" role="presentation">
           <a ui-sref="contact" tabindex="3" role="tab">
           <span class="fa fa-paper-plane-o fa-fw"></span>&nbsp;&nbsp;Contact</a>
         </li>
 
-        <li id="userLogin-tab" data-ng-click="showUserLogin()">
+      </ul>
+      <ul class="nav navbar-nav navbar-right" 
+          data-ng-class="settings.navbarNavDensity" role="tablist">
+
+        <li id="userLogin-tab" data-ng-click="showUserLogin()" role="presentation">
           <a ui-sref="userLogin" tabindex="4" role="tab">
           <span class="fa fa-user fa-fw"></span>&nbsp;&nbsp;Login</a>
         </li>
 
-        <li id="settings-tab" class="dropdown navbar-right">
-
+        <li id="settings-tab" class="dropdown" role="presentation">
           <!-- Best to have dropdown-toggle behave like ARIA menubutton -->
           <!-- defined at http://www.w3.org/TR/wai-aria-practices/#menubutton -->
           <button type="button" class="btn btn-default navbar-btn dropdown-toggle" 
@@ -181,7 +186,10 @@
                                   settings.navbarBtnDensity, 
                                   settings.marginFixDensity]" 
                   data-toggle="dropdown" data-target=".settings-dropdown-menu" 
-                  tabindex="5" role="tab" aria-haspopup="true" aria-expanded="false">
+                  role="button" aria-haspopup="true" aria-expanded="false">
+                  <!-- Use data-target=".settings-dropdown-menu" for better behavior -->
+                  <!-- href="#" -->
+                  <!-- data-ng-click="isCollapsed = !isCollapsed" -->
             <span class="fa fa-cog"></span>
             <span id="settings_button" class="sr-only">&nbsp;&nbsp;Settings</span>
             <span class="fa fa-caret-down"></span>
@@ -231,14 +239,13 @@
             <li class="divider" role="separator" aria-orientation="verticle"></li>
 
             <li data-ng-click="showThemes()" role="presentation">
-              <a id="themes_menuitem" ui-sref="themes" tabindex="-1" 
-                 role="menuitem">&nbsp;&nbsp;Themes</a>
+              <a id="themes_menuitem" ui-sref="themes" 
+                 tabindex="-1" role="menuitem">&nbsp;&nbsp;Themes</a>
             </li>
 
           </ul>
 
         </li>
-
       </ul>
     </nav>
   </section>
