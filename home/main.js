@@ -16,7 +16,12 @@ angular.module('MainApp')
         // $location.href = locationToGo
         // $location.update(locationToGo)
         // With
-        window.location.href = '/#/' + locationToGo;
+        if (locationToGo === "home") {
+          window.location.href = '/#/';
+        } 
+        else {
+          window.location.href = '/#/' + locationToGo;
+        }
       }
     };
 
