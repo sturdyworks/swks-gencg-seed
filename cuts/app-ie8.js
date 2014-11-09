@@ -2,7 +2,6 @@
 angular
   .module('MainApp', [
     'ngAnimate',
-    'ngAria',
     'ngCookies',
     'ngResource',
     'ngSanitize',
