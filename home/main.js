@@ -43,10 +43,26 @@ angular.module('MainApp')
   .controller('MainController', function ($scope, $state, $log) {
     'use strict';
 
+    // To debug might breakpoint in jQuery.event, line 4091 in v2.1.1
     $scope.goToOnSpace = function (event, locationToGo) {
-      if (event.keyCode === 32) {
+      $log.log(locationToGo);
+      if (event.keyCode === 32 || event.charCode === 32) {
         $log.log(locationToGo);
+        event.preventDefault();
         $state.go(locationToGo);
+        //event.stopPropagation();
+      }
+    };
+
+    // Also tried to set displayDensity inside list items in navbar
+    // data-ng-keyup="$event.charCode === 32 ? settings.displayDensity='cozy' : null"
+    $scope.displayDensityOnSpace = function (event, displayDensity) {
+      $log.log(displayDensity);
+      if (event.keyCode === 32 || event.charCode === 32) {
+        $log.log(displayDensity);
+        event.preventDefault();
+        $scope.settings.displayDensity = displayDensity;
+        //event.stopPropagation();
       }
     };
 
