@@ -7,8 +7,8 @@ angular
     'ngSanitize',
     'ngTouch',
     'restangular',
-    'ui.bootstrap',
     'ui.utils',
+    'ui.bootstrap',
     'ui.router'
   ])
   .config(function($stateProvider, $urlRouterProvider) {
