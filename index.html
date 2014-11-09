@@ -139,7 +139,7 @@
                               settings.navbarToggleDensity]" 
               data-toggle="collapse"
               role="tab" aria-controls="main-tablist" 
-              data-parent="#main-tablist" href="#main-tablist" data-target=".main-collapse"
+              data-parent="#main-tablist" href="#main-tablist" data-target="#main-collapse"
               data-ng-click="isCollapsed = !isCollapsed">
         <!-- aria-expanded=true/false handled by bootstrapaccessibilityplugin? -->
         <!-- aria-activedescendant=home-tab, etc. by bootstrapaccessibilityplugin? -->
@@ -153,9 +153,9 @@
          role="presentation">Display Density</a>
     </header>
 
-    <nav collapse="isCollapsed" 
-         class="collapse navbar-collapse main-collapse" 
-         role="navigation">
+    <nav class="collapse navbar-collapse main-collapse" 
+         collapse="isCollapsed" role="navigation">
+
       <ul id="main-tablist" role="tablist" class="nav navbar-nav" 
           data-ng-class="settings.navbarNavDensity">
 
@@ -195,14 +195,13 @@
                                   settings.navbarBtnDensity, 
                                   settings.marginFixDensity]" 
                   data-toggle="dropdown" href="#settings-menu"
-                  data-target=".settings-dropdown-menu" 
                   role="tab" tabindex="5" aria-haspopup="true">
             <!-- marginFixDensity? Read: http://getbootstrap.com/components/#navbar-component-alignment -->
             <!-- Use ARIA role="tab" for tablist parent, tabindex="5" behavior -->
             <!-- aria-expanded=true/false handled by bootstrapaccessibilityplugin? -->
             <!-- aria-activedescendant=settings-item, etc. by bootstrapaccessibilityplugin? -->
-            <!-- Using data-target=".settings-dropdown-menu" (a no-op) improves behavior? -->
-            <!-- Using href="#" per Bootstrap examples improves behavior? -->
+            <!-- Using href="#settings-menu" per dropdown menu items examples improves behavior? -->
+            <!-- Using data-target="#settings-menu" not suggested in dropdown menu -->
             <!-- Consider adding AngularJS style data-ng-click="isToggled = !isToggled" -->
             <span class="fa fa-cog"></span>
             <span id="settings-button" class="sr-only">&nbsp;&nbsp;Settings</span>
@@ -211,24 +210,30 @@
 
           <!-- Best to have dropdown-menu behave like ARIA menu -->
           <!-- defined at http://www.w3.org/TR/wai-aria-practices/#menu -->
-          <ul id="settings-menu" class="dropdown-menu settings-dropdown-menu" 
+          <ul id="settings-menu" class="dropdown-menu" 
               data-ng-class="settings.dropdownMenuDensity" 
               role="menu" aria-labelledby="settings-button">
 
             <li role="presentation">
-              <a id="settings-item" ui-sref="settings" tabindex="-1" 
+              <a ui-sref="settings" tabindex="-1" 
                  data-ng-keypress="goToOnSpace($event, 'settings')" 
                  role="menuitem">&nbsp;&nbsp;Settings</a>
             </li>
 
-            <li class="divider" role="separator" aria-orientation="verticle"></li>
+            <li role="presentation">
+              <a ui-sref="themes" tabindex="-1" 
+                 data-ng-keypress="goToOnSpace($event, 'themes')" 
+                 role="menuitem">&nbsp;&nbsp;Themes</a>
+            </li>
 
+            <li class="divider" role="separator" aria-orientation="verticle"></li>
             <li class="dropdown-header" data-ng-class="settings.dropdownHeaderDensity" 
                 role="separator" aria-orientation="verticle">Display Density</li>
 
             <li role="presentation">
               <a data-ng-click="settings.displayDensity='comfortable'" 
-                 tabindex="-1" role="menuitem">
+                 data-ng-keyup="displayDensityOnSpace($event, 'comfortable')" 
+                 href="" tabindex="-1" role="menuitem">
               <span class="fa fa-check fa-fw" 
                  data-ng-class="{invisible: settings.displayDensity != 'comfortable'}">
               </span>&nbsp;&nbsp;Comfortable</a>
@@ -236,7 +241,8 @@
 
             <li role="presentation">
               <a data-ng-click="settings.displayDensity='cozy'" 
-                 tabindex="-1" role="menuitem">
+                 data-ng-keyup="displayDensityOnSpace($event, 'cozy')"
+                 href="" tabindex="-1" role="menuitem">
               <span class="fa fa-check fa-fw" 
                  data-ng-class="{invisible: settings.displayDensity != 'cozy'}">
               </span>&nbsp;&nbsp;Cozy</a>
@@ -244,18 +250,11 @@
 
             <li role="presentation">
               <a data-ng-click="settings.displayDensity='compact'" 
+                 data-ng-keyup="displayDensityOnSpace($event, 'compact')"
                  tabindex="-1" role="menuitem">
               <span class="fa fa-check fa-fw" 
                  data-ng-class="{invisible: settings.displayDensity != 'compact'}">
               </span>&nbsp;&nbsp;Compact</a>
-            </li>
-
-            <li class="divider" role="separator" aria-orientation="verticle"></li>
-
-            <li role="presentation">
-              <a id="themes-item" ui-sref="themes" tabindex="-1" 
-                 data-ng-keypress="goToOnSpace($event, 'themes')" 
-                 role="menuitem">&nbsp;&nbsp;Themes</a>
             </li>
 
           </ul>
@@ -297,13 +296,14 @@
   <script src="bower_components/bootstrapaccessibilityplugin/plugins/js/bootstrap-accessibility_1.0.3.js"></script>
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-animate/angular-animate.js"></script>
-  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
   <script src="bower_components/angular-cookies/angular-cookies.js"></script>
   <script src="bower_components/angular-resource/angular-resource.js"></script>
   <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
   <script src="bower_components/angular-touch/angular-touch.js"></script>
-  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
   <script src="bower_components/angular-ui-utils/ui-utils.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
   <script src="bower_components/lodash/dist/lodash.compat.js"></script>
   <script src="bower_components/restangular/dist/restangular.js"></script>
   <!-- Add New Bower Component JS Above -->
