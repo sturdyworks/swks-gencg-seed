@@ -17,21 +17,21 @@ angular
       .state('home', {
         url: "/",
         views: {
-          'aside@': {
-            templateUrl: 'home/home.aside.html'
+          'aside': {
+            template: '<h3>Home Aside</h3>'
           },
-          'main@': {
-            templateUrl: 'home/home.main.html'
+          'main': {
+            templateUrl: 'home/home.html'
           }
         }
       })
       .state('about', {
         url: '/about',
         views: {
-          'aside@': {
+          'aside': {
             template: '<h3>About Aside</h3>'
           },
-          'main@': {
+          'main': {
             template: '<h3>About Main</h3>'
           }
         }
@@ -39,21 +39,21 @@ angular
       .state('contact', {
         url: "/contact",
         views: {
-          'aside@': {
-            template: '<h3>Contact Aside</h3>'
+          'aside': {
+            template: 'contact.aside'
           },
-          'main@': {
-            template: '<h3>Contact Main</h3>'
+          'main': {
+            template: 'contact.main'
           }
         }
       })
       .state('userLogin', {
         url: "/userLogin",
         views: {
-          'aside@': {
+          'aside': {
             template: 'userLogin.aside'
           },
-          'main@': {
+          'main': {
             template: 'userLogin.main'
           }
         }
@@ -61,10 +61,10 @@ angular
       .state('settings', {
         url: "/settings",
         views: {
-          'aside@': {
+          'aside': {
             template: '<h3>Settings Aside</h3>'
           },
-          'main@': {
+          'main': {
             templateUrl: 'settings/settings.html'
           }
         }
@@ -72,30 +72,18 @@ angular
       .state('themes', {
         url: "/themes",
         views: {
-          'aside@': {
+          'aside': {
             template: '<h3>Themes Aside</h3>'
           },
-          'main@': {
+          'main': {
             template: '<h3>Themes Main</h3>'
-          }
-        }
-      })
-      .state('error', {
-        url: "/error",
-        views: {
-          'aside@': {
-            template: '<h3>Error Aside</h3>'
-          },
-          'main@': {
-            template: '<h3>Error Main</h3>'
           }
         }
       });
 
-
     /* Add New States Above */
     $urlRouterProvider.when('', '/');
-    $urlRouterProvider.otherwise('error?code=404');
+    $urlRouterProvider.otherwise("/error?code=404");
   })
   // Create a 'user defaults' service
   // http://stackoverflow.com/questions/13769732/angular-js-init-ng-model-from-default-values/17823590#17823590
