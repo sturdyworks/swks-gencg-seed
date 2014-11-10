@@ -9,17 +9,20 @@ angular.module('MainApp')
   .run(function($rootScope, $state, $stateParams, $log) {
     'use strict';
 
-    $state.go('home');
+    var promise = $state.go('home');
+    $log.log(promise);
+
     // You need to put $state on $rootScope to access it in controller
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
 
+    // Code below does not get called on garbage input!
     $rootScope.$on('$stateNotFound', 
       function(event, unfoundState, fromState, fromParams) {
         $log.log(unfoundState.to); // "unknown.state"
         $log.log(unfoundState.toParams); // {a:1, b:2}
         $log.log(unfoundState.options); // {inherit:false} + default options
-        $state.go("error?code=404");
+        $state.go('error?code=404');
       });
 
     $rootScope.settings = {
@@ -49,7 +52,8 @@ angular.module('MainApp')
       if (event.keyCode === 32 || event.charCode === 32) {
         $log.log(locationToGo);
         event.preventDefault();
-        $state.go(locationToGo);
+        var promise = $state.go(locationToGo);
+        $log.log(promise);
         //event.stopPropagation();
       }
     };
