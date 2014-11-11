@@ -46,27 +46,40 @@ angular.module('MainApp')
   .controller('MainController', function ($scope, $state, $log) {
     'use strict';
 
-    // To debug might breakpoint in jQuery.event, line 4091 in v2.1.1
-    $scope.goToOnSpace = function (event, locationToGo) {
+    // Suggested by https://code.angularjs.org/1.3.0-rc.2/docs/guide/expression
+    function simpleKeys (original) {
+      return Object.keys(original).reduce(function (obj, key) {
+        obj[key] = typeof original[key] === 'object' ? '{ ... }' : original[key];
+        return obj;
+      }, {});
+    }
+
+    // To debug might breakpoint at jQuery.event, line 4091 in v2.1.1
+    $scope.goToOnSpace = function (keyEvent, locationToGo) {
       $log.log(locationToGo);
-      if (event.keyCode === 32 || event.charCode === 32) {
+      $scope.keyEvent = simpleKeys(keyEvent);
+      $log.log($scope.keyEvent);
+      if (keyEvent.keyCode === 32 || keyEvent.charCode === 32) {
         $log.log(locationToGo);
-        event.preventDefault();
+        //keyEvent.preventDefault();
+        //keyEvent.stopPropagation();
         var promise = $state.go(locationToGo);
+        promise = simpleKeys(promise);
         $log.log(promise);
-        //event.stopPropagation();
       }
     };
 
     // Also tried to set displayDensity inside list items in navbar
-    // data-ng-keyup="$event.charCode === 32 ? settings.displayDensity='cozy' : null"
-    $scope.displayDensityOnSpace = function (event, displayDensity) {
+    // data-ng-keyup="$event.keyCode === 32 ? settings.displayDensity='cozy' : null"
+    $scope.displayDensityOnSpace = function (keyEvent, displayDensity) {
       $log.log(displayDensity);
-      if (event.keyCode === 32 || event.charCode === 32) {
+      $scope.keyEvent = simpleKeys(keyEvent);
+      $log.log($scope.keyEvent);
+      if (keyEvent.keyCode === 32 || keyEvent.charCode === 32) {
         $log.log(displayDensity);
-        event.preventDefault();
+        //keyEvent.preventDefault();
+        //keyEvent.stopPropagation();
         $scope.settings.displayDensity = displayDensity;
-        //event.stopPropagation();
       }
     };
 
