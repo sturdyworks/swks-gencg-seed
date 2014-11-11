@@ -145,20 +145,20 @@
         <!-- aria-expanded=true/false handled by accessibilityplugin? -->
         <!-- aria-activedescendant=home-tab, etc. by accessibilityplugin? -->
         <!-- Avoid? aria-controls="main-tablist" -->
-        <!-- Avoid? data-parent="#main-tablist" data-target=".main-collapse" -->
+        <!-- Avoid? data-parent="#main-tablist" data-target="#main-collapse" -->
         <span class="sr-only">Toggle navigation</span>
         <span class="fa fa-bars fa-fw" 
               data-ng-class="settings.faIconDensity"></span>
       </button>
 
-      <!-- Tt's not good to have href attr missing on an anchor, so brand below -->
-      <!-- would get ui-sref="home" but messes with tab order, so todo it an image -->
+      <!-- It's not good to have href attr missing on an anchor, so brand below -->
+      <!-- should get ui-sref="home" but messes with tabbing, so todo as image -->
       <a class="navbar-brand" 
          data-ng-class="settings.navbarBrandDensity" 
          role="presentation">Display Density</a>
     </header>
 
-    <nav id="main-tablist" class="collapse navbar-collapse main-collapse" 
+    <nav id="main-tablist" class="collapse navbar-collapse" 
          collapse="isCollapsed" role="navigation">
 
       <ul role="tablist" class="nav navbar-nav" 
@@ -193,15 +193,14 @@
           <span class="fa fa-user fa-fw"></span>&nbsp;&nbsp;Login</a>
         </li>
 
-        <li id="settings-tab" class="dropdown" role="presentation">
+        <li class="dropdown" role="presentation">
           <!-- Best to have dropdown-toggle behave like ARIA menubutton -->
           <!-- defined at http://www.w3.org/TR/wai-aria-practices/#menubutton -->
-          <button type="button" class="btn navbar-btn dropdown-toggle" 
-                  data-ng-class="[settings.btnDensity, 
-                                  settings.navbarBtnDensity, 
+          <a id="settings-tab" class="navbar-btn dropdown-toggle" 
+                  data-ng-class="[settings.navbarBtnDensity, 
                                   settings.marginFixDensity]" 
                   data-toggle="dropdown" href="#settings-menu"
-                  role="tab" tabindex="0" aria-haspopup="true">
+                  role="tab" tabindex="5" aria-haspopup="true">
             <!-- marginFixDensity? Read: http://getbootstrap.com/components/#navbar-component-alignment -->
             <!-- Use ARIA role="tab" for tablist parent, tabindex="5" behavior -->
             <!-- aria-expanded=true/false handled by bootstrapaccessibilityplugin? -->
@@ -212,7 +211,7 @@
             <span class="fa fa-cog"></span>
             <span id="settings-button" class="sr-only">&nbsp;&nbsp;Settings</span>
             <span class="fa fa-caret-down"></span>
-          </button>
+          </a>
 
           <!-- Best to have dropdown-menu behave like ARIA menu -->
           <!-- defined at http://www.w3.org/TR/wai-aria-practices/#menu -->
@@ -233,11 +232,12 @@
             </li>
 
             <li class="divider" role="separator"></li>
-            <li class="dropdown-header" data-ng-class="settings.dropdownHeaderDensity" 
+            <li class="dropdown-header" 
+                data-ng-class="settings.dropdownHeaderDensity" 
                 role="separator">Display Density</li>
 
-            <!-- In general, it's not good to have href attr missing on an anchor, -->
-            <!-- so add one in on next three (and get proper up/down arrow behavior -->
+            <!-- To get up/down arrow behavior on next three anchors, follow -->
+            <!-- Principle, It's not good to have href missing on an anchor -->
 
             <li role="presentation">
               <a data-ng-click="settings.displayDensity='comfortable'" 
@@ -302,7 +302,7 @@
     webshims.polyfill();
   </script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-  <script src="bower_components/bootstrapaccessibilityplugin/plugins/js/bootstrap-accessibility_1.0.3.js"></script>
+  <script src="bower_components/bootstrapaccessibilityplugin/plugins/js/bootstrap-accessibility.js"></script>
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-animate/angular-animate.js"></script>
   <script src="bower_components/angular-cookies/angular-cookies.js"></script>
