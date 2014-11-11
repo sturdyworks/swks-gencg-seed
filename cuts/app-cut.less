@@ -1,4 +1,53 @@
 
+/* Change nav-btn look to better match navbar links */
+/* Note: nav-btn are not currently used in application */
+
+.navbar-default .navbar-btn {
+  color: @navbar-default-color;
+  background-color: transparent;
+  border: 1px solid @navbar-default-color;
+  border-radius: 4px;
+}
+
+.navbar-default .navbar-btn:hover,
+.navbar-default .navbar-btn:focus {
+  background-color: @navbar-default-link-active-bg;
+  color: @navbar-default-link-hover-color;
+}
+
+.navbar-inverse .navbar-btn:hover,
+.navbar-inverse .navbar-btn:focus {
+  color: @navbar-inverse-brand-hover-color;
+  background-color: transparent;
+  border: 1px solid @navbar-inverse-brand-hover-color;
+}
+
+
+// Bootstrap Accessability Plugin Dotted Outline feature
+// Wanted to add some radius, but that would be bleeding edge!
+
+.btn:focus {
+  outline: dotted 2px #000
+}
+
+div.active:focus {
+  outline:dotted 1px #000
+}
+
+a:focus {
+  outline:dotted 1px #000
+}
+
+.close:hover,.close:focus {
+  outline:dotted 1px #000
+}
+
+.nav>li>a:hover,.nav>li>a:focus {
+  outline:dotted 1px #000
+}
+
+
+
 
 /* Bootstrap less variables */
 
