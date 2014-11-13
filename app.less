@@ -64,6 +64,9 @@
 @comfortable-size: 1.25;
 @compact-size: 0.85;
 
+@navbar-icon-width: 542.091px;
+@navbar-icon-height: 512px;
+
 @navbar-height-comfortable: floor((@navbar-height * @comfortable-size));
 @navbar-height-compact: floor((@navbar-height * @compact-size));
 
@@ -142,23 +145,38 @@
   .navbar-vertical-align(@input-height-small);
 }
 
+.navbar-icon-comfortable {
+  width: auto;
+  height: (@navbar-height-comfortable / @navbar-icon-height * @navbar-icon-height);
+}
+
+.navbar-icon-cozy {
+  width: auto;
+  height: (@navbar-height / @navbar-icon-height * @navbar-icon-height);
+}
+
+.navbar-icon-compact {
+  width: auto;
+  height: (@navbar-height-compact / @navbar-icon-height * @navbar-icon-height);
+}
+
 .navbar-brand-comfortable {
   height: @navbar-height-comfortable;
-  padding: @navbar-padding-vertical-comfortable @navbar-padding-horizontal-comfortable;
+  padding: (@navbar-padding-vertical-comfortable / 4) (@navbar-padding-horizontal-comfortable / 4);
   font-size: ceil((@font-size-large * @comfortable-size));
   line-height: floor((@font-size-large * @line-height-large * @comfortable-size));
 }
 
 .navbar-brand-cozy {
   height: @navbar-height;
-  padding: @navbar-padding-vertical @navbar-padding-horizontal;
+  padding: (@navbar-padding-vertical / 4) (@navbar-padding-horizontal / 4);
   font-size: @font-size-large;
   line-height: @line-height-computed;
 }
 
 .navbar-brand-compact {
   height: @navbar-height-compact;
-  padding: @navbar-padding-vertical-compact @navbar-padding-horizontal-compact;
+  padding: (@navbar-padding-vertical-compact / 4) (@navbar-padding-horizontal-compact / 4);
   font-size: ceil((@font-size-large * @compact-size));
   line-height: floor((@font-size-large * @line-height-large * @compact-size));
 }

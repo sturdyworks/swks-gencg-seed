@@ -1,4 +1,45 @@
 
+      <!-- It's not good to have href attr missing on an anchor, so brand below -->
+      <!-- should get ui-sref="home" but messes with tabbing, so todo as image -->
+      <a class="navbar-brand" 
+         data-ng-class="settings.navbarBrandDensity" 
+         role="presentation">Display Density</a>
+
+
+      <button id="home-tab" type="button" class="btn navbar-btn navbar-brand" 
+         data-ng-class="settings.navbarBrandDensity" 
+         ui-sref="home" ui-sref-active="active" 
+         data-ng-keyup="goToOnSpace($event, 'home')"
+         tabindex="1" role="tab">
+        <img id="navbar-icon" data-ng-class="settings.navbarIconDensity" 
+             role="presentation" src="img/Swks-Icon.svg" 
+             data-ng-cloak alt="Sturdyworks Icon"/>
+        <span class="sr-only">Home</span>
+      </button>
+
+
+
+        <li role="presentation">
+          <a id="home-tab" tabindex="1" role="tab" 
+             ui-sref="home" ui-sref-active="active" 
+             data-ng-keyup="goToOnSpace($event, 'home')">
+             <span class="fa fa-home fa-fw"></span>&nbsp;&nbsp;Home</a>
+        </li>
+
+
+
+  <!-- Webshim polyfill library for older browsers requires jQuery -->
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/webshim/js-webshim/dev/polyfiller.js"></script>
+  <script>
+    webshim.setOptions('basePath', '/bower_components/webshim/js-webshim/dev/shims/');
+    webshims.polyfill();
+  </script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="bower_components/bootstrapaccessibilityplugin/plugins/js/bootstrap-accessibility.js"></script>
+
+
+
 
           <a id="settings-tab" class="btn navbar-btn dropdown-toggle" 
                   data-ng-class="[settings.btnDensity, 
