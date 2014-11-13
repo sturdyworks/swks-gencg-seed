@@ -31,6 +31,7 @@ angular.module('MainApp')
       navbarDensity: 'navbar-cozy',
       navbarNavDensity: 'navbar-nav-cozy',
       navbarBtnDensity: 'navbar-btn-cozy',
+      navbarIconDensity: 'navbar-icon-cozy',
       navbarBrandDensity: 'navbar-brand-cozy',
       navbarToggleDensity: 'navbar-toggle-cozy',
       dropdownMenuDensity: 'dropdown-menu-cozy',
@@ -54,31 +55,28 @@ angular.module('MainApp')
       }, {});
     }
 
-    // To debug might breakpoint at jQuery.event, line 4091 in v2.1.1
     $scope.goToOnSpace = function (keyEvent, locationToGo) {
+      keyEvent.preventDefault();
+      keyEvent.stopPropagation();
       $log.log(locationToGo);
       $scope.keyEvent = simpleKeys(keyEvent);
       $log.log($scope.keyEvent);
       if (keyEvent.keyCode === 32 || keyEvent.charCode === 32) {
         $log.log(locationToGo);
-        //keyEvent.preventDefault();
-        //keyEvent.stopPropagation();
         var promise = $state.go(locationToGo);
         promise = simpleKeys(promise);
         $log.log(promise);
       }
     };
 
-    // Also tried to set displayDensity inside list items in navbar
-    // data-ng-keyup="$event.keyCode === 32 ? settings.displayDensity='cozy' : null"
     $scope.displayDensityOnSpace = function (keyEvent, displayDensity) {
+      keyEvent.preventDefault();
+      keyEvent.stopPropagation();
       $log.log(displayDensity);
       $scope.keyEvent = simpleKeys(keyEvent);
       $log.log($scope.keyEvent);
       if (keyEvent.keyCode === 32 || keyEvent.charCode === 32) {
         $log.log(displayDensity);
-        //keyEvent.preventDefault();
-        //keyEvent.stopPropagation();
         $scope.settings.displayDensity = displayDensity;
       }
     };
@@ -88,6 +86,7 @@ angular.module('MainApp')
       $scope.settings.navbarDensity = 'navbar-' + $scope.settings.displayDensity;
       $scope.settings.navbarNavDensity = 'navbar-nav-' + $scope.settings.displayDensity;
       $scope.settings.navbarBtnDensity = 'navbar-btn-' + $scope.settings.displayDensity;
+      $scope.settings.navbarIconDensity = 'navbar-icon-' + $scope.settings.displayDensity;
       $scope.settings.navbarBrandDensity = 'navbar-brand-' + $scope.settings.displayDensity;
       $scope.settings.navbarToggleDensity = 'navbar-toggle-' + $scope.settings.displayDensity;
       $scope.settings.dropdownMenuDensity = 'dropdown-menu-' + $scope.settings.displayDensity;

@@ -149,13 +149,17 @@
               data-ng-class="settings.faIconDensity"></span>
       </button>
 
-      <!-- It's not good to have href attr missing on an anchor, so brand below -->
-      <!-- should get ui-sref="home" but messes with tabbing, so todo as image -->
-      <a class="navbar-brand" 
+      <a id="home-tab" class="navbar-brand" 
          data-ng-class="settings.navbarBrandDensity" 
-         role="presentation">Display Density</a>
+         ui-sref="home" ui-sref-active="active" 
+         data-ng-keyup="goToOnSpace($event, 'home')"
+         tabindex="1" role="tab">
+        <img id="navbar-icon" data-ng-class="settings.navbarIconDensity" 
+             role="presentation" src="img/Swks-Icon.svg" 
+             data-ng-cloak alt="Sturdyworks Icon"/>
+        <span class="sr-only">Home</span>
+      </a>
     </header>
-
     <!-- ARIA navigation role should be parent container of tablist <ul> -->
     <nav id="main-tablist" class="collapse navbar-collapse" 
          collapse="isCollapsed" role="navigation">
@@ -164,13 +168,6 @@
           aria-controls="home-tab" 
           data-ng-class="settings.navbarNavDensity"
           role="tablist" aria-labelledby="collapse-button">
-
-        <li role="presentation">
-          <a id="home-tab" tabindex="1" role="tab" 
-             ui-sref="home" ui-sref-active="active" 
-             data-ng-keyup="goToOnSpace($event, 'home')">
-             <span class="fa fa-home fa-fw"></span>&nbsp;&nbsp;Home</a>
-        </li>
 
         <li role="presentation">
           <a id="about-tab" tabindex="2" role="tab" 
