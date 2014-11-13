@@ -1,0 +1,27 @@
+<section class="container navbar navbar-default" role="navigation">
+  <header class="navbar-header">
+    <button type="button" class="btn navbar-btn navbar-toggle"
+            data-toggle="collapse" data-target="#main-collapse"
+            data-parent="#main-tablist" href="#main-tablist" 
+            aria-controls="#main-tablist" role="tab">
+      <span id="colapse-label" 
+            class="sr-only">Toggle navigation</span>
+      <span class="fa fa-bars fa-fw"></span>
+    </button>
+    <a class="navbar-brand" role="presentation">My App</a>
+  </header>
+  <nav id="main-tablist" class="collapse navbar-collapse" 
+       role="navigation">
+    <ul class="nav navbar-nav" role="tablist" tabindex="0" 
+        data-ng-class="settings.navbarNavDensity">
+      <li role="presentation">
+        <a id="home-tab" href="/home" tabindex="1" role="tab">
+          <span class="fa fa-home fa-fw"></span>Home</a>
+      </li>
+      <li role="presentation">
+        <a id="about-tab" href="/about" tabindex="2" role="tab">
+          <span class="fa fa-comment fa-fw"></span>About</a>
+      </li>
+    </ul>
+  </nav>
+</section>

@@ -2,18 +2,22 @@
 @import "bower_components/bootstrap/less/bootstrap.less";
 @import "bower_components/bootstrap/less/theme.less";
 
-// Will use FontAwesome instead of Glyphicons
+/* Will use FontAwesome instead of Glyphicons */
 @import "bower_components/font-awesome/less/font-awesome.less";
 @fa-font-path: "bower_components/font-awesome/fonts";
 
-// Themes to meet guidelines for accessibility
-@import (css) "bower_components/bootstrapaccessibilityplugin/plugins/css/bootstrap-accessibility_1.0.3.css";
+/* Font Awesome color change to match Bootstrap 3.2 navbar-default */
+
+@fa-border-color:   @gray-lighter;
+@fa-inverse:        @gray-light;
+
+/* Themes to meet guidelines for accessibility */
+@import (css) "bower_components/bootstrapaccessibilityplugin/plugins/css/bootstrap-accessibility.css";
 @import "styles/bootstrap-a11y-theme/a11ytheme-swks.less";
 
-@import "pesticide";
+//@import "pesticide";
 
 /* Set Bootstrap icon font to Font Awesome */
-
 @icon-font-path:    "bower_components/font-awesome/fonts/";
 @icon-font-name:    "fontawesome-webfont";
 @icon-font-svg-id:  "fontawesome-webfont";
@@ -26,45 +30,42 @@
 @-o-viewport        { width: device-width; }
 @viewport           { width: device-width; }
 
-/* Font Awesome color change to match Bootstrap 3.2 navbar-default */
-
-@fa-border-color:   @gray-lighter;
-@fa-inverse:        @gray-light;
-
 /* Angular UI Bootstrap needs these rules */
 
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
-/* Change btn highlight effect to better match navbar links */
+/* Extend A11Y Theme colors to dropdown menu */
 
-.navbar-default .navbar-btn {
-  color: @navbar-default-color;
-  background-color: transparent;
+.navbar-default .navbar-nav > li > ul {
+  color: #fff;
+  background-color: #132531;
+}
+.navbar-default .navbar-nav > li > ul > li > a {
+  color: #fff;
+  background-color: #132531;
+}
+.navbar-default .navbar-nav > li > ul > li > a:hover,
+.navbar-default .navbar-nav > li > ul > li > a:focus {
+  color: #132531;
+  background-color: #fff;
+}
+
+/* Settings Cog/Carot icons get border like their GMail cousin */
+
+#settings-tab {
   border: 1px solid @navbar-default-color;
-  border-radius: 4px;
-}
-
-.navbar-default .navbar-btn:hover,
-.navbar-default .navbar-btn:focus {
-  background-color: @navbar-default-bg;
-}
-
-.navbar-inverse .navbar-btn:hover,
-.navbar-inverse .navbar-btn:focus {
-  color: @navbar-inverse-brand-hover-color;
-  background-color: transparent;
-  border: 1px solid @navbar-inverse-brand-hover-color;
-}
-
-/* Bootstrap data-target related classes are placeholders */
-
-.main-navbar-collapse, .settings-dropdown-menu {
+// Wanted to use radius but a matching outline radius too cutting edge
+// Accessability Plugin outline feature is square and hard to change
+// border-radius: 4px;
 }
 
 /* Display density related rules */
 
 @comfortable-size: 1.25;
 @compact-size: 0.85;
+
+@navbar-icon-width: 542.091px;
+@navbar-icon-height: 512px;
 
 @navbar-height-comfortable: floor((@navbar-height * @comfortable-size));
 @navbar-height-compact: floor((@navbar-height * @compact-size));
@@ -144,23 +145,38 @@
   .navbar-vertical-align(@input-height-small);
 }
 
+.navbar-icon-comfortable {
+  width: auto;
+  height: (@navbar-height-comfortable / @navbar-icon-height * @navbar-icon-height);
+}
+
+.navbar-icon-cozy {
+  width: auto;
+  height: (@navbar-height / @navbar-icon-height * @navbar-icon-height);
+}
+
+.navbar-icon-compact {
+  width: auto;
+  height: (@navbar-height-compact / @navbar-icon-height * @navbar-icon-height);
+}
+
 .navbar-brand-comfortable {
   height: @navbar-height-comfortable;
-  padding: @navbar-padding-vertical-comfortable @navbar-padding-horizontal-comfortable;
+  padding: (@navbar-padding-vertical-comfortable / 4) (@navbar-padding-horizontal-comfortable / 4);
   font-size: ceil((@font-size-large * @comfortable-size));
   line-height: floor((@font-size-large * @line-height-large * @comfortable-size));
 }
 
 .navbar-brand-cozy {
   height: @navbar-height;
-  padding: @navbar-padding-vertical @navbar-padding-horizontal;
+  padding: (@navbar-padding-vertical / 4) (@navbar-padding-horizontal / 4);
   font-size: @font-size-large;
   line-height: @line-height-computed;
 }
 
 .navbar-brand-compact {
   height: @navbar-height-compact;
-  padding: @navbar-padding-vertical-compact @navbar-padding-horizontal-compact;
+  padding: (@navbar-padding-vertical-compact / 4) (@navbar-padding-horizontal-compact / 4);
   font-size: ceil((@font-size-large * @compact-size));
   line-height: floor((@font-size-large * @line-height-large * @compact-size));
 }

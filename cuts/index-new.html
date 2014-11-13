@@ -133,80 +133,85 @@
            data-ng-class="settings.navbarDensity" role="navigation">
 
     <header class="navbar-header">
+      <!-- aria-expanded handled by accessibilityplugin -->
+      <!-- aria-activedescendant by accessibilityplugin -->
       <button type="button" class="btn navbar-btn navbar-toggle"
               data-ng-class="[settings.btnDensity, 
                               settings.navbarBtnDensity, 
                               settings.navbarToggleDensity]" 
               data-toggle="collapse"
-              role="tab" aria-controls="main-tablist" 
-              data-parent="#main-tablist" href="#main-tablist" data-target="#main-collapse"
+              tabindex="0" role="button" aria-controls="main-tablist" 
+              data-parent="#main-tablist" href="#main-tablist" 
+              data-target="#main-collapse"
               data-ng-click="isCollapsed = !isCollapsed">
-        <!-- aria-expanded=true/false handled by bootstrapaccessibilityplugin? -->
-        <!-- aria-activedescendant=home-tab, etc. by bootstrapaccessibilityplugin? -->
-        <!-- Avoid? aria-controls="main-tablist" -->
-        <!-- Avoid? data-parent="#main-tablist" data-target=".main-collapse" -->
-        <span class="sr-only">Toggle navigation</span>
-        <span class="fa fa-bars fa-fw" data-ng-class="settings.faIconDensity"></span>
+        <span id="collapse-button" class="sr-only">Toggle navigation</span>
+        <span class="fa fa-bars fa-fw" 
+              data-ng-class="settings.faIconDensity"></span>
       </button>
 
-      <a class="navbar-brand" data-ng-class="settings.navbarBrandDensity" 
-         role="presentation">Display Density</a>
+      <a id="home-tab" class="navbar-brand" 
+         data-ng-class="settings.navbarBrandDensity" 
+         ui-sref="home" ui-sref-active="active" 
+         data-ng-keyup="goToOnSpace($event, 'home')"
+         tabindex="1" role="tab">
+        <img id="navbar-icon" data-ng-class="settings.navbarIconDensity" 
+             role="presentation" src="img/Swks-Icon.svg" 
+             data-ng-cloak alt="Sturdyworks Icon"/>
+        <span class="sr-only">Home</span>
+      </a>
     </header>
 
-    <nav class="collapse navbar-collapse main-collapse" 
+    <!-- ARIA navigation role should be parent container of tablist <ul> -->
+    <nav id="main-tablist" class="collapse navbar-collapse" 
          collapse="isCollapsed" role="navigation">
 
-      <ul id="main-tablist" role="tablist" class="nav navbar-nav" 
-          data-ng-class="settings.navbarNavDensity">
+      <ul class="nav navbar-nav" 
+          aria-controls="home-tab" 
+          data-ng-class="settings.navbarNavDensity"
+          role="tablist" aria-labelledby="collapse-button">
 
         <li role="presentation">
-          <a id="home-tab" ui-sref="home" tabindex="1" role="tab" 
-             data-ng-keypress="goToOnSpace($event, 'home')">
-             <span class="fa fa-home fa-fw"></span>&nbsp;&nbsp;Home</a>
-        </li>
-
-        <li role="presentation">
-          <a id="about-tab" ui-sref="about" tabindex="2" role="tab" 
-             data-ng-keypress="goToOnSpace($event, 'about')">
+          <a id="about-tab" tabindex="2" role="tab" 
+             ui-sref="about" ui-sref-active="active" 
+             data-ng-keyup="goToOnSpace($event, 'about')">
             <span class="fa fa-comment fa-fw"></span>&nbsp;&nbsp;About</a>
         </li>
 
         <li role="presentation">
-          <a id="contact-tab" ui-sref="contact" tabindex="3" role="tab"
-             data-ng-keypress="goToOnSpace($event, 'contact')">
+          <a id="contact-tab" tabindex="3" role="tab"
+             ui-sref="contact" ui-sref-active="active" 
+             data-ng-keyup="goToOnSpace($event, 'contact')">
             <span class="fa fa-paper-plane-o fa-fw"></span>&nbsp;&nbsp;Contact</a>
         </li>
 
       </ul>
       <ul class="nav navbar-nav navbar-right"
-          data-ng-class="settings.navbarNavDensity" role="tablist">
+          data-ng-class="settings.navbarNavDensity" 
+          role="tablist" aria-labelledby="collapse-button">
 
         <li role="presentation">
-          <a id="userLogin-tab" ui-sref="userLogin" tabindex="4" role="tab" 
-             data-ng-keypress="goToOnSpace($event, 'userLogin')">
+          <a id="userLogin-tab" tabindex="4" role="tab" 
+             ui-sref="userLogin" ui-sref-active="active" 
+             data-ng-keyup="goToOnSpace($event, 'userLogin')">
           <span class="fa fa-user fa-fw"></span>&nbsp;&nbsp;Login</a>
         </li>
 
-        <li id="settings-tab" class="dropdown" role="presentation">
+        <li class="dropdown" role="presentation">
           <!-- Best to have dropdown-toggle behave like ARIA menubutton -->
-          <!-- defined at http://www.w3.org/TR/wai-aria-practices/#menubutton -->
-          <button type="button" class="btn navbar-btn dropdown-toggle" 
-                  data-ng-class="[settings.btnDensity, 
-                                  settings.navbarBtnDensity, 
-                                  settings.marginFixDensity]" 
-                  data-toggle="dropdown" href="#settings-menu"
-                  role="tab" tabindex="5" aria-haspopup="true">
-            <!-- marginFixDensity? Read: http://getbootstrap.com/components/#navbar-component-alignment -->
-            <!-- Use ARIA role="tab" for tablist parent, tabindex="5" behavior -->
-            <!-- aria-expanded=true/false handled by bootstrapaccessibilityplugin? -->
-            <!-- aria-activedescendant=settings-item, etc. by bootstrapaccessibilityplugin? -->
-            <!-- Using href="#settings-menu" per dropdown menu items examples improves behavior? -->
-            <!-- Using data-target="#settings-menu" not suggested in dropdown menu -->
-            <!-- Consider adding AngularJS style data-ng-click="isToggled = !isToggled" -->
+          <!-- defined  http://www.w3.org/TR/wai-aria-practices/#menubutton -->
+          <!-- For info on why settings.marginFixDensity exits Read: -->
+          <!-- http://getbootstrap.com/components/#navbar-component-alignment -->
+          <!-- aria-expanded handled by bootstrapaccessibilityplugin -->
+          <!-- aria-activedescendant by bootstrapaccessibilityplugin -->
+          <!-- data-target="#settings-menu" not suggested for dropdown -->
+          <a id="settings-tab" class="navbar-btn dropdown-toggle" 
+             data-ng-class="[settings.navbarBtnDensity, settings.marginFixDensity]" 
+             data-toggle="dropdown" data-parent="#settings-menu" 
+             href="#settings-menu" role="tab" tabindex="5" aria-haspopup="true">
             <span class="fa fa-cog"></span>
             <span id="settings-button" class="sr-only">&nbsp;&nbsp;Settings</span>
             <span class="fa fa-caret-down"></span>
-          </button>
+          </a>
 
           <!-- Best to have dropdown-menu behave like ARIA menu -->
           <!-- defined at http://www.w3.org/TR/wai-aria-practices/#menu -->
@@ -215,43 +220,49 @@
               role="menu" aria-labelledby="settings-button">
 
             <li role="presentation">
-              <a ui-sref="settings" tabindex="-1" 
-                 data-ng-keypress="goToOnSpace($event, 'settings')" 
-                 role="menuitem">&nbsp;&nbsp;Settings</a>
+              <a id="settings-item" ui-sref="settings" 
+                 data-ng-keyup="goToOnSpace($event, 'settings')" 
+                 tabindex="-1" role="menuitem">&nbsp;&nbsp;Settings</a>
             </li>
 
             <li role="presentation">
-              <a ui-sref="themes" tabindex="-1" 
-                 data-ng-keypress="goToOnSpace($event, 'themes')" 
-                 role="menuitem">&nbsp;&nbsp;Themes</a>
+              <a id="themes-item" ui-sref="themes" 
+                 data-ng-keyup="goToOnSpace($event, 'themes')" 
+                 tabindex="-1" role="menuitem">&nbsp;&nbsp;Themes</a>
             </li>
 
-            <li class="divider" role="separator" aria-orientation="verticle"></li>
-            <li class="dropdown-header" data-ng-class="settings.dropdownHeaderDensity" 
-                role="separator" aria-orientation="verticle">Display Density</li>
+            <li class="divider" role="separator"></li>
+            <li class="dropdown-header" 
+                data-ng-class="settings.dropdownHeaderDensity" 
+                role="separator">Display Density</li>
 
+            <!-- To get up/down arrow behavior on next three anchors, follow -->
+            <!-- Principle, It's not good to have href missing on an anchor -->
             <li role="presentation">
-              <a data-ng-click="settings.displayDensity='comfortable'" 
+              <a id="comfortable-item" tabindex="-1" role="menuitem" 
+                 data-ng-click="settings.displayDensity='comfortable'" 
                  data-ng-keyup="displayDensityOnSpace($event, 'comfortable')" 
-                 href="" tabindex="-1" role="menuitem">
+                 href="javascript: void(0);">
               <span class="fa fa-check fa-fw" 
                  data-ng-class="{invisible: settings.displayDensity != 'comfortable'}">
               </span>&nbsp;&nbsp;Comfortable</a>
             </li>
 
             <li role="presentation">
-              <a data-ng-click="settings.displayDensity='cozy'" 
-                 data-ng-keyup="displayDensityOnSpace($event, 'cozy')"
-                 href="" tabindex="-1" role="menuitem">
+              <a id="cozy-item" tabindex="-1" role="menuitem" 
+                 data-ng-click="settings.displayDensity='cozy'" 
+                 data-ng-keyup="displayDensityOnSpace($event, 'cozy')" 
+                 href="javascript: void(0);">
               <span class="fa fa-check fa-fw" 
                  data-ng-class="{invisible: settings.displayDensity != 'cozy'}">
               </span>&nbsp;&nbsp;Cozy</a>
             </li>
 
             <li role="presentation">
-              <a data-ng-click="settings.displayDensity='compact'" 
-                 data-ng-keyup="displayDensityOnSpace($event, 'compact')"
-                 href="" tabindex="-1" role="menuitem">
+              <a id="compact-item"  tabindex="-1" role="menuitem" 
+                 data-ng-click="settings.displayDensity='compact'" 
+                 data-ng-keyup="displayDensityOnSpace($event, 'compact')" 
+                 href="javascript: void(0);">
               <span class="fa fa-check fa-fw" 
                  data-ng-class="{invisible: settings.displayDensity != 'compact'}">
               </span>&nbsp;&nbsp;Compact</a>
@@ -270,8 +281,8 @@
   <section id="content" class="container-fluid" role="main">
     <header class="row">
       <!-- CONTENT INJECTED INTO VIEWS -->
-      <nav ui-view="main" class="col-xs-12 col-sm-6 col-lg-8"></nav>
       <aside ui-view="aside" class="col-xs-6 col-lg-4"></aside>
+      <nav ui-view="main" class="col-xs-12 col-sm-6 col-lg-8"></nav>
     </header>
   </section>
 
@@ -293,7 +304,7 @@
     webshims.polyfill();
   </script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-  <script src="bower_components/bootstrapaccessibilityplugin/plugins/js/bootstrap-accessibility_1.0.3.js"></script>
+  <script src="bower_components/bootstrapaccessibilityplugin/plugins/js/bootstrap-accessibility.js"></script>
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-animate/angular-animate.js"></script>
   <script src="bower_components/angular-aria/angular-aria.js"></script>
@@ -308,6 +319,17 @@
   <script src="bower_components/lodash/dist/lodash.compat.js"></script>
   <script src="bower_components/restangular/dist/restangular.js"></script>
   <!-- Add New Bower Component JS Above -->
+
+  <!-- jQuery given precedence on keypress events by AngularJS -->
+  <!-- Code that traps spacebar writen with AngularJS directives -->
+  <!-- Below is an attempt to disarm the jQuery mechanism, no joy -->
+  <script>
+    $( "#settings-item" ).keypress(function( keyEvent ) {
+      if ( keyEvent.which == 32 ) {
+        keyEvent.preventDefault();
+      }
+    });
+  </script>
 
   <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
   <script>
