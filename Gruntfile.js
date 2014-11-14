@@ -97,8 +97,8 @@ module.exports = function (grunt) {
           {src: ['bower_components/font-awesome/fonts/**'], dest: 'dist/',filter:'isFile',expand:true},
           {src: ['bower_components/html5shiv/dist/html5shiv.min.js'], dest: 'dist/'},
           {src: ['bower_components/respond/dest/respond.min.js'], dest: 'dist/'},
-          {src: ['bower_components/es5-shim/es5-shim.js'], dest: 'dist/'},
-          {src: ['bower_components/json3/lib/json3.js'], dest: 'dist/'},
+          {src: ['bower_components/es5-shim/es5-shim.min.js'], dest: 'dist/'},
+          {src: ['bower_components/json3/lib/json3.min.js'], dest: 'dist/'},
           {src: ['scripts/ie8-fontface-before-workaround.js'], dest: 'dist/'},
           {src: ['bower_components/angular-ui-utils/ui-utils-ieshiv.min.js'], dest: 'dist/'}
           //{src: ['bower_components/select2/*.png','bower_components/select2/*.gif'], dest:'dist/css/',flatten:true,expand:true},
