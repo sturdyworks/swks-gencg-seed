@@ -90,6 +90,8 @@
   <!--[if lt IE 9]>
     <script src="bower_components/html5shiv/dist/html5shiv.min.js"></script>
     <script src="bower_components/respond/dest/respond.min.js"></script>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.js"></script>
   <![endif]-->
   <!-- IE8 has some issues with @font-face when combined with :before -->
   <!-- Read: http://getbootstrap.com/getting-started/#support-ie8-font-face -->
@@ -109,18 +111,15 @@
 </head>
 
 <body id="data-ng-app" 
+      role="application"
       data-ng-app="MainApp" 
       data-ng-controller="MainController" 
       data-ng-model="settings.displayDensity" 
-      role="application">
+      data-ng-strict-di>
 
   <!-- Below from Yeoman Angular Generator example code -->
   <!--[if lt IE 7]>
-    <p class="browsehappy">
-      You are using an <strong>outdated</strong> browser. 
-      Please <a href="http://browsehappy.com/">upgrade your browser</a> 
-      to improve your experience.
-    </p>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
   <!-- Using role="main" on element with id="content" as non-obtrusive alt. -->
@@ -136,9 +135,7 @@
       <!-- aria-expanded handled by accessibilityplugin -->
       <!-- aria-activedescendant by accessibilityplugin -->
       <button type="button" class="btn navbar-btn navbar-toggle"
-              data-ng-class="[settings.btnDensity, 
-                              settings.navbarBtnDensity, 
-                              settings.navbarToggleDensity]" 
+              data-ng-class="[settings.btnDensity, settings.navbarBtnDensity, settings.navbarToggleDensity]" 
               data-toggle="collapse"
               tabindex="0" role="button" aria-controls="main-tablist" 
               data-parent="#main-tablist" href="#main-tablist" 
