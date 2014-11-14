@@ -95,6 +95,11 @@ module.exports = function (grunt) {
         files: [
           {src: ['img/**'], dest: 'dist/'},
           {src: ['bower_components/font-awesome/fonts/**'], dest: 'dist/',filter:'isFile',expand:true},
+          {src: ['bower_components/html5shiv/dist/html5shiv.min.js'], dest: 'dist/'},
+          {src: ['bower_components/respond/dest/respond.min.js'], dest: 'dist/'},
+          {src: ['bower_components/es5-shim/es5-shim.js'], dest: 'dist/'},
+          {src: ['bower_components/json3/lib/json3.js'], dest: 'dist/'},
+          {src: ['scripts/ie8-fontface-before-workaround.js'], dest: 'dist/'},
           {src: ['bower_components/angular-ui-utils/ui-utils-ieshiv.min.js'], dest: 'dist/'}
           //{src: ['bower_components/select2/*.png','bower_components/select2/*.gif'], dest:'dist/css/',flatten:true,expand:true},
           //{src: ['bower_components/angular-mocks/angular-mocks.js'], dest: 'dist/'}
@@ -135,7 +140,7 @@ module.exports = function (grunt) {
         dest: 'temp/app.full.js'
       }
     },
-    ngmin: {
+    ngAnnotate: {
       main: {
         src:'temp/app.full.js',
         dest: 'temp/app.full.js'
@@ -155,7 +160,7 @@ module.exports = function (grunt) {
       main: {
         src: 'temp/app.full.js',
         dest:'dist/app.full.min.js'
-      },
+      }
     },
     htmlmin: {
       main: {
@@ -204,7 +209,7 @@ module.exports = function (grunt) {
     }
   });
 
-  grunt.registerTask('build',['jshint','clean:before','less','dom_munger','ngtemplates','cssmin','concat','ngmin','uglify','copy','htmlmin','imagemin','clean:after']);
+  grunt.registerTask('build',['jshint','clean:before','less','dom_munger','ngtemplates','cssmin','concat','ngAnnotate','uglify','copy','htmlmin','imagemin','clean:after']);
   grunt.registerTask('serve', ['dom_munger:read','jshint','connect', 'watch']);
   grunt.registerTask('test',['dom_munger:read','karma:all_tests']);
 
