@@ -100,7 +100,7 @@ angular
   // Create a 'user defaults' service
   // http://stackoverflow.com/questions/13769732/angular-js-init-ng-model-from-default-values/17823590#17823590
   // .value("userSettings", /* your server-side JSON here */);
-  .directive('formAutofillFix', function() {
+  .directive('main, formAutofillFix', function() {
     return function(scope, elem, attrs) {
       // Fixes Chrome bug: https://groups.google.com/forum/#!topic/angular/6NlucSskQjY
       elem.prop('method', 'POST');
