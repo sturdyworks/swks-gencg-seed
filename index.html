@@ -87,11 +87,13 @@
   <!-- Bootstrap suggests html5shiv for enabling any missing HTML5 elements -->
   <!-- Bootstrap suggests Respond.js for enabling any missing media queries -->
   <!-- Read: http://getbootstrap.com/getting-started/#support-ie8-respondjs -->
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
-    <script src="bower_components/html5shiv/dist/html5shiv.js"></script>
-    <script src="bower_components/respond/dest/respond.js"></script>
-    <script src="bower_components/es5-shim/es5-shim.js"></script>
-    <script src="bower_components/json3/lib/json3.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.1.0/es5-shim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.1.0/es5-sham.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/json3/3.3.2/json3.min.js"></script>
   <![endif]-->
   <!-- IE8 has some issues with @font-face when combined with :before -->
   <!-- Read: http://getbootstrap.com/getting-started/#support-ie8-font-face -->
@@ -140,6 +142,7 @@
               tabindex="0" role="button" aria-controls="main-tablist" 
               data-parent="#main-tablist" href="#main-tablist" 
               data-target="#main-collapse"
+              data-ng-init="isCollapsed = true" 
               data-ng-click="isCollapsed = !isCollapsed">
         <span id="collapse-button" class="sr-only">Toggle navigation</span>
         <span class="fa fa-bars fa-fw" 
@@ -159,8 +162,8 @@
     </header>
     <!-- ARIA navigation role should be parent container of tablist <ul> -->
     <nav id="main-tablist" class="collapse navbar-collapse" 
-         collapse="isCollapsed" role="navigation">
-
+         data-ng-class="{'in': !isCollapsed}" role="navigation">
+         <!-- replaced collapse="isCollapsed with data-ng-class above" -->
       <ul class="nav navbar-nav" 
           aria-controls="home-tab" 
           data-ng-class="settings.navbarNavDensity"
@@ -215,6 +218,7 @@
               data-ng-class="settings.dropdownMenuDensity" 
               role="menu" aria-labelledby="settings-button">
 
+            <!-- ui-event="{ keyup : 'goToOnSpace($event, 'settings')' }" -->
             <li role="presentation">
               <a id="settings-item" ui-sref="settings" 
                  data-ng-keyup="goToOnSpace($event, 'settings')" 
